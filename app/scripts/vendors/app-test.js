@@ -6,7 +6,7 @@ app.run(function($httpBackend, $timeout, Profile) {
   jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 
   // set the user as logged
-  Profile.set({id: '2'});
+  Profile.set({id: '1'});
 
   // stub requests
   type = JSON.parse(readFixtures('type.json'));

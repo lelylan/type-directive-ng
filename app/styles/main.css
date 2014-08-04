@@ -351,6 +351,7 @@
 .ly-form .ly-field .ly-description span {
   display: inline-block;
   text-transform: capitalize;
+  margin-right: 3em;
 }
 
 
