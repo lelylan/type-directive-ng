@@ -229,30 +229,15 @@
  * Form
  */
 
-.ly-form .ly-head {
-  padding: 0.6em;
-  border-bottom: 1px solid #eee;
-}
-
-.ly-form .ly-head .ly-name {
-  font-size: 2.2em;
-}
-
-.ly-form .ly-description {
-  font-size: 1.2em;
-}
-
 .ly-form .ly-fields {
-  padding: 0.6em 0em;
-  padding-bottom: 1em;
+  padding: 1em 0em;
 }
 
 .ly-form .ly-field {
-  padding: 0.3em 1em;
+  padding: 0.5em 0;
 }
 
 .ly-form .ly-field .ly-description {
-  margin-bottom:0.5em;
 }
 
 .ly-form .ly-field .ly-name {
@@ -260,24 +245,11 @@
   font-size: 0.9em;
 }
 
-.ly-form .ly-button {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: absolute;
-  width: 100%;
-  padding: 0;
-  padding-top: 0.7em;
-  padding-bottom: 0.7em;
-  font-size: 1.5em;
-  text-transform: uppercase;
-  box-shadow: 1px 1px 3px #999;
-}
-
 .ly-form .ly-field input[type="range"] {
   width: 93%
 }
 
 .ly-form .ly-field .ly-color {
-  height: 1.8em;
   margin-left: 0.4em !important;
 }
 
@@ -289,57 +261,23 @@
   padding: 0;
 }
 
-.ly-form .ly-field {
-  padding: 0;
-  height: 2.8em;
-  position: relative;
-  /*border-bottom: 1px solid #f8f8f8;*/
-}
-
 .ly-form .ly-editable {
-  height: 3.2em;
-}
-
-.ly-form .ly-no-underline .ly-value {
-  border-bottom: none !important;
 }
 
 .ly-form .ly-field .ly-description {
-  position: absolute;
-  padding: 0em 1em 0;
   color: #bbb;
   font-size: 0.75em;
   text-transform: uppercase;
 }
 
 .ly-form .ly-field .ly-value {
-  position: absolute;
   color: #666;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
-  width: 92%;
-  margin: .9em 0.8em 0.5em;
 }
 
 .ly-form .ly-editable .ly-value {
   padding-bottom: 0.1em;
   border-bottom: 1px dashed #ddd;
-}
-
-.ly-form .ly-actions .ly-button {
-  font-size: 1.2em;
-  margin-left: 3.5%;
-  margin-bottom: 0.6em;
-  width: 93%;
-  position: relative;
-}
-
-.ly-form .ly-actions .ly-delete-action {
-  margin-top: 0.5em;
-  margin-bottom: 1em;
-  text-align: center;
-  padding-top: 1em;
-  border-top: 1px solid #eee;
 }
 
 .ly-form .ly-actions .ly-delete-link,
@@ -363,8 +301,7 @@
  */
 
 .ly-form .ly-field-top {
-  height: 2.3em;
-  padding: 1.2em 0 0 .8em;
+  padding: 1.2em 0 .8em .8em;
   cursor: pointer;
 }
 
@@ -374,11 +311,12 @@
 
 .ly-form .ly-field-top i {
   font-size: 1.15em;
+  width: .5em;
 }
 
 .ly-form .ly-field .ly-name-field {
   font-size: 1.2em;
-  margin: 0em 0.5em;
+  padding-left: 0.2em;
   cursor: pointer;
 }
 
@@ -387,7 +325,7 @@
 }
 
 .ly-form .ly-detail {
-  margin-left: 1.1em;
+  padding-left: 2em;
 }
 
 

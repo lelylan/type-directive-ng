@@ -97,10 +97,11 @@
         <form class="ly-form" name="form">
           <div class="ly-fields">
             <div class="ly-field ly-field-top" ng-click="toggle(property)">
-              <i class="fa fa-angle-right"></i>
+              <i class="fa fa-angle-right" ng-if="!property.open"></i>
+              <i class="fa fa-angle-down" ng-if="property.open"></i>
               <input class="ly-value ly-name-field" type="text" disabled ng-model="property.name"></input>
             </div>
-            <div class="ly-detail" ng-show="property.open">
+            <div class="ly-detail" ng-if="property.open">
               <div class="ly-field">
                 <p class="ly-description">ID</p>
                 <input class="ly-value ly-id-field" type="text" disabled ng-model="property.id"></input>
@@ -111,7 +112,12 @@
               </div>
               <div class="ly-field">
                 <p class="ly-description">Accepted values</p>
-                <input class="ly-value ly-accepted-field" type="text" disabled ng-model="property.accepted"></input>
+                <div ng-repeat="(key, value) in property.accepted">
+                  <div class="ly-accepted">
+                    <input class="ly-value ly-accepted-field" type="text" disabled ng-model="key"></input>
+                    <input class="ly-value ly-accepted-field" type="text" disabled ng-model="value"></input>
+                  </div>
+                </div>
                 </p>
               </div>
               <div class="ly-field">
