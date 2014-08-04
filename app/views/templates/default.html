@@ -116,8 +116,8 @@
             <div class="ly-detail" ng-show="property.open">
 
               <div class="ly-field ly-editable">
-                <p class="ly-description">Name</p>
-                <input class="ly-value" type="text" ng-disabled="!isOwner()" ng-model="property.name"></input>
+                <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>
+                <input class="ly-value" type="text" ng-disabled="!isOwner()" name="name" ng-model="property.name" required></input>
               </div>
               <div class="ly-field">
                 <p class="ly-description">ID</p>
