@@ -329,9 +329,17 @@
   width: .5em;
 }
 
-.ly-form .ly-field-top i:hover {
+.ly-form .ly-field-top:hover,
+.ly-form .ly-field-top:hover .ly-value {
   color: #239cbb;
+  cursor: pointer;
 }
+
+.ly-form .ly-field-top i.fa-angle-down {
+  margin-left: -0.2em;
+  margin-right: 0.2em;
+}
+
 
 .ly-form .ly-field .ly-name-field {
   font-size: 1.2em;
@@ -339,7 +347,9 @@
 }
 
 .ly-form .ly-detail {
-  padding-left: 2em;
+  border-top: 1px solid #f8f8f8;
+  padding-top: 0.4em;
+  margin-left: 2em;
   padding-bottom: .8em;
 }
 

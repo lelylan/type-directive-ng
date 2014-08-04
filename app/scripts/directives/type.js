@@ -134,14 +134,13 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     }
 
     scope.updateProperty = function(property, form) {
-      property.status = 'Saving...';
+      property.status = 'Saving';
       Property.update(property.id, property).
         success(function(response) {
-          property.status = 'Saved';
           $timeout(function() {
             property.status = null;
             form.$setPristine()
-          }, 2000);
+          }, 500);
         }).
         error(function(data, status) {
           scope.view.path = '/message';

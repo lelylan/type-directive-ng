@@ -96,16 +96,22 @@
 
         <form class="ly-form" name="form" ng-submit="updateProperty(property, form)" novalidate>
           <div class="ly-fields" ng-class="{'ly-owner': isOwner()}">
-            <div class="ly-field ly-field-top" ng-class="{'ly-editable': property.open}">
-              <i class="fa fa-angle-right" ng-if="!property.open" ng-click="toggle(property)"></i>
-              <i class="fa fa-angle-down" ng-if="property.open" ng-click="toggle(property)"></i>
-              <input class="ly-value ly-name-field" type="text" ng-disabled="!isOwner() && !property.open" ng-model="property.name"></input>
-            </div>
             <a href="" ng-click="updateProperty(property, form)" class="ly-save {{property.saving}}" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
               <span>{{property.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
             </a>
 
+            <div class="ly-field ly-field-top" ng-click="toggle(property)">
+              <i class="fa fa-angle-right" ng-if="!property.open"></i>
+              <i class="fa fa-angle-down" ng-if="property.open"></i>
+              <input class="ly-value ly-name-field" type="text" disabled ng-model="property.name"></input>
+            </div>
+
             <div class="ly-detail" ng-show="property.open">
+
+              <div class="ly-field ly-editable">
+                <p class="ly-description">Name</p>
+                <input class="ly-value" type="text" ng-disabled="!isOwner()" ng-model="property.name"></input>
+              </div>
               <div class="ly-field">
                 <p class="ly-description">ID</p>
                 <input class="ly-value ly-id-field" type="text" disabled ng-model="property.id"></input>
