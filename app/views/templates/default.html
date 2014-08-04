@@ -99,8 +99,12 @@
 
         <form class="ly-form" name="form" ng-submit="updateProperty(property, form)" novalidate>
           <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': property.open}">
-            <a href="" ng-click="updateProperty(property, form)" class="ly-save {{property.saving}}" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
+            <a href="" ng-click="updateProperty(property, form)" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
               <span>{{property.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
+            </a>
+
+            <a href="" ng-click="confirmDeleteProperty('property', property, $index)" class="ly-delete">
+              <i class="fa fa-minus-circle" ></i>
             </a>
 
             <div class="ly-field ly-field-top" ng-click="toggle(property)">
@@ -177,6 +181,41 @@
     </div>
 
 
+    <!-- ----------------- -->
+    <!-- Connection Delete -->
+    <!-- ----------------- -->
+
+    <div class="ly-settings ly-delete ly-modal ly-animation-fast" ng-if="view.path=='/delete'">
+    <!--<div class="ly-settings ly-delete ly-modal ly-animation-fast">-->
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+        <div class="ly-connection-delete">
+          <div class="ly-header">
+            <p class="ly-name">Delete</p>
+          </div>
+          <form class="ly-form" ng-submit="deleteProperty(confirm)">
+            <div ng-class="{'ly-owner': isOwner()}">
+              <div>
+                <p class="ly-info">
+                Deleting your {{toDelete.type}} is irreversible.
+                Enter the {{toDelete.type}} name to confirm you want to permanently delete.
+                </p>
+              </div>
+
+              <div class="ly-field ly-editable">
+                <input class="ly-value ly-name" type="text" autofocus placeholder="Property name" ng-model="confirm"></input>
+              </div>
+              <div class="ly-actions">
+                <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=toDelete.connection.name}">delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
     <div class="ly-connections ly-modal ly-animation-fast" ng-if="view.path=='/connections'">
       <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
       <div class="ly-modal-window">
@@ -184,7 +223,7 @@
 
         <div class="ly-connections-type">
           <div class="ly-header">
-            <p class="ly-name">Connection</p>
+            <p class="ly-name">Connections</p>
           </div>
           <div class="ly-list">
             <div class="ly-connection ly-properties" ng-click="setConnection('properties')">

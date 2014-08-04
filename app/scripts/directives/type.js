@@ -149,8 +149,31 @@ angular.module('lelylan.directives.type.directive').directive('type', [
         success(function(response) {
           response.open = true;
           scope.type.properties.unshift(response);
-          console.log(type.properties);
+          var properties = _.pluck(scope.type.properties, 'id')
+          Type.update(scope.type.id, { properties: properties });
         });
+    }
+
+    scope.confirmDeleteProperty = function(type, property, index) {
+      scope.toDelete = { type: type, connection: property, index: index };
+      scope.view.path = '/delete' ;
+    }
+
+    scope.deleteProperty = function(confirm) {
+      if (scope.toDelete.connection.name == confirm) {
+        var connection = scope.toDelete.connection;
+        var index = scope.toDelete.index;
+
+        if (scope.toDelete.type == 'property') {
+          Property.delete(connection.id).
+            success(function(response) {
+              scope.type.properties.splice(index, 1);
+              var properties = _.pluck(scope.type.properties, 'id')
+              Type.update(scope.type.id, { properties: properties });
+              scope.showDefault();
+            });
+        }
+      }
     }
 
     scope.updateProperty = function(property, form) {
