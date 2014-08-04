@@ -1,0 +1,129 @@
+<div class="ly-type ly-type-{{type.id}}">
+
+
+  <!-- ---------------- -->
+  <!--  Type message  -->
+  <!-- ---------------- -->
+
+  <div class="ly-message ly-generic-message ly-animation-fast" ng-if="view.path=='/message'">
+    <p class="ly-description">{{message.title}}</p>
+    <p class="ly-description-sub">{{message.description}}</p>
+  </div>
+
+
+  <!-- ----------------- -->
+  <!--  Loading message  -->
+  <!-- ----------------- -->
+
+  <div class="ly-message ly-loading" ng-if="view.path=='/loading'">
+    <p class="ly-description">Loading Type</p>
+    <div class="ly-spinner">
+      <div class="ly-bounce-1"></div>
+      <div class="ly-bounce-2"></div>
+      <div class="ly-bounce-3"></div>
+    </div>
+  </div>
+
+
+  <!-- ------------ -->
+  <!-- Type Content -->
+  <!-- ------------ -->
+
+  <div class="ly-content" ng-class="{'ly-animation': view.path=='/default'}" ng-if="view.path!='/loading' && view.path!='/message'">
+
+
+    <!-- ------------- -->
+    <!--  Type header  -->
+    <!-- ------------- -->
+
+    <div class="ly-header">
+
+      <!-- Name -->
+
+      <p class="ly-name ly-type-name">{{type.name}}</p>
+
+      <!-- Side menu -->
+
+      <div class="ly-menu">
+        <a href="#"><i class="fa fa-ellipsis-v"></i></a>
+      </div>
+    </div>
+
+
+    <!-- ---------------- -->
+    <!--  Type subheader  -->
+    <!-- ---------------- -->
+
+    <div class="ly-subheader">
+
+      <!-- Connection name -->
+
+      <div class="ly-connection ly-properties" ng-if="connection=='properties'">
+        <span class="ly-name">Properties</span>
+        <span class="ly-label">{{type.properties.length}}</span>
+      </div>
+
+      <div class="ly-connection ly-functions" ng-if="connection=='functions'">
+        <span class="ly-name">Functions</span>
+        <span class="ly-label">{{type.functions.length}}</span>
+      </div>
+
+      <div class="ly-connection ly-statuses" ng-if="connection=='statuses'">
+        <span class="ly-name">Statuses</span>
+        <span class="ly-label">{{type.statuses.length}}</span>
+      </div>
+
+      <div class="ly-connection ly-category" ng-if="connection=='category'">
+        <span class="ly-name">Category</span>
+      </div>
+
+      <!-- Side menu -->
+
+      <div class="ly-menu">
+        <a href="#"><i class="fa fa-angle-down"></i></a>
+      </div>
+    </div>
+
+
+    <!-- ------------ -->
+    <!--  Properties  -->
+    <!-- ------------ -->
+
+    <div class="ly-properties">
+      <div class="ly-property" ng-repeat="property in type.properties">
+
+        <!-- Property form -->
+
+        <form class="ly-form" name="form">
+          <div class="ly-fields">
+            <div class="ly-field ly-field-top" ng-click="toggle(property)">
+              <i class="fa fa-angle-right"></i>
+              <input class="ly-value ly-name-field" type="text" disabled ng-model="property.name"></input>
+            </div>
+            <div class="ly-detail" ng-show="property.open">
+              <div class="ly-field">
+                <p class="ly-description">ID</p>
+                <input class="ly-value ly-id-field" type="text" disabled ng-model="property.id"></input>
+              </div>
+              <div class="ly-field">
+                <p class="ly-description">Type</p>
+                <input class="ly-value ly-type-field" type="text" disabled ng-model="property.type"></input>
+              </div>
+              <div class="ly-field">
+                <p class="ly-description">Accepted values</p>
+                <input class="ly-value ly-accepted-field" type="text" disabled ng-model="property.accepted"></input>
+                </p>
+              </div>
+              <div class="ly-field">
+                <p class="ly-description">Default value</p>
+                <input class="ly-value ly-default-field" type="text" disabled ng-model="property.default"></input>
+                </p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
