@@ -238,6 +238,7 @@
 }
 
 .ly-form .ly-field .ly-description {
+  padding-bottom: .2em;
 }
 
 .ly-form .ly-field .ly-name {
@@ -273,6 +274,12 @@
 .ly-form .ly-field .ly-value {
   color: #666;
   font-size: 1em;
+  width: 90%;
+}
+
+.ly-form .ly-field .ly-accepted .ly-value {
+  width: 42%;
+  margin-right: 1em;
 }
 
 .ly-form .ly-editable .ly-value {
