@@ -16,7 +16,7 @@
       "name": "Status",
       "type": "text",
       "default": "0",
-      "accepted": { "on": "On", "off": "Off" },
+      "accepted": [{"key": "on", "value": "On"}, {"key": "off", "value": "Off"}],
       "created_at": "2012-07-16T14:32:50Z",
       "updated_at": "2012-07-16T14:32:50Z"
     },

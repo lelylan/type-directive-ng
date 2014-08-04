@@ -114,12 +114,16 @@
                 </select>
               </div>
               <div class="ly-field ly-editable">
-                <p class="ly-description">Accepted values</p>
-                <div ng-repeat="(key, value) in property.accepted">
+                <p class="ly-description">Accepted values (key - value)</p>
+                <div ng-repeat="pair in property.accepted">
                   <div class="ly-accepted">
-                    <input class="ly-value ly-accepted-field" type="text" ng-disabled="!isOwner()" ng-model="key"></input>
-                    <input class="ly-value ly-accepted-field" type="text" ng-disabled="!isOwner()" ng-model="value"></input>
+                    <a href="" ng-click="removeAccepted(property, $index)"><i class="fa fa-minus"></i></a>
+                    <input class="ly-value ly-accepted-field" placeholder="key" type="text" ng-disabled="!isOwner()" ng-model="pair.key"></input>
+                    <input class="ly-value ly-accepted-field" placeholder="value" type="text" ng-disabled="!isOwner()" ng-model="pair.value"></input>
                   </div>
+                </div>
+                <div class="ly-accepted ly-accepted-add">
+                  <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i><span>Add</span></a>
                 </div>
                 </p>
               </div>

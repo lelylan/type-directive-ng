@@ -279,8 +279,21 @@
 }
 
 .ly-form .ly-field .ly-accepted .ly-value {
-  width: 42%;
+  width: 38%;
   margin-right: 1em;
+}
+
+.ly-form .ly-field .ly-accepted i {
+  font-size: .5em;
+  padding-right: 1em;
+}
+
+.ly-form .ly-field .ly-accepted-add {
+  padding-top: .5em;
+}
+
+.ly-form .ly-field .ly-accepted span {
+  font-size: .9em;
 }
 
 .ly-form .ly-owner .ly-editable .ly-value {
@@ -330,6 +343,8 @@
 .ly-form .ly-detail {
   padding-left: 2em;
 }
+
+
 
 
 /*

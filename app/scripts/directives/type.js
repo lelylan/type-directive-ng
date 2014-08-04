@@ -63,6 +63,8 @@ angular.module('lelylan.directives.type.directive').directive('type', [
       }
     };
 
+
+
     /*
      * DYNAMIC LAYOUT
      */
@@ -98,8 +100,9 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     });
 
 
+
     /*
-     * Behaviour
+     * General behaviour
      */
 
     /* open and close one connection */
@@ -107,8 +110,23 @@ angular.module('lelylan.directives.type.directive').directive('type', [
       connection.open = !connection.open;
     }
 
+    /* check if the owner is logged in */
     scope.isOwner = function() {
       return (Profile.get() && Profile.get().id == scope.type.owner.id);
+    }
+
+
+    /*
+     * Property behaviour
+     */
+
+    scope.removeAccepted = function(property, index) {
+      delete property.accepted.splice(index, 1);
+      console.log(property.accepted);
+    }
+
+    scope.addAccepted = function(property) {
+      property.accepted.push({key: '', value: ''});
     }
 
   }
