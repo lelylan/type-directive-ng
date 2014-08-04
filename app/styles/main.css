@@ -222,6 +222,7 @@
 
 .ly-property {
   border-bottom: 1px solid #f8f8f8;
+  position: relative;
 }
 
 
@@ -275,7 +276,7 @@
 .ly-form .ly-field .ly-value {
   color: #666;
   font-size: 1em;
-  width: 90%;
+  width: 50%;
 }
 
 .ly-form .ly-field .ly-accepted .ly-value {
@@ -343,6 +344,35 @@
 .ly-form .ly-detail {
   padding-left: 2em;
 }
+
+.ly-form .ly-save {
+  position: absolute;
+  top: 1em;
+  right: .7em;
+  color: #eee;
+  font-size: 1.1em;
+}
+
+.ly-form .ly-save i {
+  font-size: 1.2em;
+}
+
+.ly-form .ly-save.ly-save-enabled {
+  color: #239cbb;
+}
+
+.ly-form .ly-save span {
+  display: none;
+}
+
+.ly-form .ly-save.ly-save-enabled span {
+  display: inline;
+}
+
+.ly-form .ly-save.ly-save-enabled {
+  display: inline;
+}
+
 
 
 

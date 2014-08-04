@@ -80,7 +80,7 @@
       <!-- Side menu -->
 
       <div class="ly-menu">
-        <a href="#"><i class="fa fa-angle-down"></i></a>
+        <a href="#"><i class="fa fa-angle-down waves-effect waves-icon"></i></a>
       </div>
     </div>
 
@@ -101,6 +101,11 @@
               <i class="fa fa-angle-down" ng-if="property.open" ng-click="toggle(property)"></i>
               <input class="ly-value ly-name-field" type="text" ng-disabled="!isOwner() && !property.open" ng-model="property.name"></input>
             </div>
+
+            <a href="" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
+              <span>Save</span> <i class="fa fa-check-circle" ></i>
+            </a>
+
             <div class="ly-detail" ng-if="property.open">
               <div class="ly-field">
                 <p class="ly-description">ID</p>
