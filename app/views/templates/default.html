@@ -54,13 +54,16 @@
     <!--  Type subheader  -->
     <!-- ---------------- -->
 
-    <div class="ly-subheader" ng-click="view.path='/connections'">
+    <div class="ly-subheader">
 
       <!-- Connection name -->
 
       <div class="ly-connection ly-properties" ng-if="connection=='properties'">
         <span class="ly-name">Properties</span>
         <span class="ly-label">{{type.properties.length}}</span>
+        <ul class="ly-add" ng-click="addProperty()">
+          <li><a href=""><i class="fa fa-plus"></i> Add property</a></li>
+        </ul>
       </div>
 
       <div class="ly-connection ly-functions" ng-if="connection=='functions'">
@@ -79,7 +82,7 @@
 
       <!-- Side menu -->
 
-      <div class="ly-menu">
+      <div class="ly-menu" ng-click="view.path='/connections'">
         <a href="#"><i class="fa fa-angle-down"></i></a>
       </div>
     </div>
@@ -95,7 +98,7 @@
         <!-- Property form -->
 
         <form class="ly-form" name="form" ng-submit="updateProperty(property, form)" novalidate>
-          <div class="ly-fields" ng-class="{'ly-owner': isOwner()}">
+          <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': property.open}">
             <a href="" ng-click="updateProperty(property, form)" class="ly-save {{property.saving}}" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
               <span>{{property.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
             </a>

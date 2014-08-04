@@ -10,6 +10,7 @@ app.run(function($httpBackend, $timeout, Profile) {
 
   // stub requests
   type = JSON.parse(readFixtures('type.json'));
+  property = JSON.parse(readFixtures('property.json'));
 
   // mock requests
   $httpBackend.when('GET', /\/templates\//).passThrough();
@@ -17,7 +18,10 @@ app.run(function($httpBackend, $timeout, Profile) {
   // type requests
   $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
 
-  // propeerty requests
+  // property create
+  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/properties/).respond(property);
+
+  // propeerty update
   $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/properties\//).
     respond(function(method, url, data, headers) { return [200, updateProperty(data), {}]; });
 

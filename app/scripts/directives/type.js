@@ -144,6 +144,15 @@ angular.module('lelylan.directives.type.directive').directive('type', [
       property.accepted.push({key: '', value: ''});
     }
 
+    scope.addProperty = function() {
+      Property.create({name: 'New property', type: 'text'}).
+        success(function(response) {
+          response.open = true;
+          scope.type.properties.unshift(response);
+          console.log(type.properties);
+        });
+    }
+
     scope.updateProperty = function(property, form) {
       property.status = 'Saving';
       Property.update(property.id, property).
