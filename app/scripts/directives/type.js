@@ -46,6 +46,22 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
 
+    // property types
+    scope.config = {
+      property: {
+        types: {
+          'text': 'text',
+          'number': 'number',
+          'range': 'range',
+          'color': 'color',
+          'password': 'password',
+          'date': 'date',
+          'time': 'time',
+          'datetime': 'datetime',
+          'url': 'url'
+        }
+      }
+    };
 
     /*
      * DYNAMIC LAYOUT
@@ -81,8 +97,18 @@ angular.module('lelylan.directives.type.directive').directive('type', [
       }
     });
 
+
+    /*
+     * Behaviour
+     */
+
+    /* open and close one connection */
     scope.toggle = function(connection) {
       connection.open = !connection.open;
+    }
+
+    scope.isOwner = function() {
+      return (Profile.get() && Profile.get().id == scope.type.owner.id);
     }
 
   }

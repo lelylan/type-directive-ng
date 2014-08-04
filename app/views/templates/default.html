@@ -95,11 +95,11 @@
         <!-- Property form -->
 
         <form class="ly-form" name="form">
-          <div class="ly-fields">
-            <div class="ly-field ly-field-top" ng-class="{'ly-editable': property.open}" ng-click="toggle(property)">
-              <i class="fa fa-angle-right" ng-if="!property.open"></i>
-              <i class="fa fa-angle-down" ng-if="property.open"></i>
-              <input class="ly-value ly-name-field" type="text" disabled ng-model="property.name"></input>
+          <div class="ly-fields" ng-class="{'ly-owner': isOwner()}">
+            <div class="ly-field ly-field-top" ng-class="{'ly-editable': property.open}">
+              <i class="fa fa-angle-right" ng-if="!property.open" ng-click="toggle(property)"></i>
+              <i class="fa fa-angle-down" ng-if="property.open" ng-click="toggle(property)"></i>
+              <input class="ly-value ly-name-field" type="text" ng-disabled="!isOwner() && !property.open" ng-model="property.name"></input>
             </div>
             <div class="ly-detail" ng-if="property.open">
               <div class="ly-field">
@@ -108,21 +108,24 @@
               </div>
               <div class="ly-field ly-editable">
                 <p class="ly-description">Type</p>
-                <input class="ly-value ly-type-field" type="text" disabled ng-model="property.type"></input>
+                <select class="ly-value"
+                  ng-model="property.type"
+                  ng-options="key as value for (key , value) in config.property.types">
+                </select>
               </div>
               <div class="ly-field ly-editable">
                 <p class="ly-description">Accepted values</p>
                 <div ng-repeat="(key, value) in property.accepted">
                   <div class="ly-accepted">
-                    <input class="ly-value ly-accepted-field" type="text" disabled ng-model="key"></input>
-                    <input class="ly-value ly-accepted-field" type="text" disabled ng-model="value"></input>
+                    <input class="ly-value ly-accepted-field" type="text" ng-disabled="!isOwner()" ng-model="key"></input>
+                    <input class="ly-value ly-accepted-field" type="text" ng-disabled="!isOwner()" ng-model="value"></input>
                   </div>
                 </div>
                 </p>
               </div>
               <div class="ly-field ly-editable">
                 <p class="ly-description">Default value</p>
-                <input class="ly-value ly-default-field" type="text" disabled ng-model="property.default"></input>
+                <input class="ly-value ly-default-field" type="text" ng-disabled="!isOwner()" ng-model="property.default"></input>
                 </p>
               </div>
             </div>
