@@ -104,7 +104,7 @@ angular.module('lelylan.directives.type.directive').directive('type', [
 
 
     /*
-     * General behaviour
+     * GENERIC BEHAVIOUR
      */
 
     /* open and close one connection */
@@ -117,15 +117,26 @@ angular.module('lelylan.directives.type.directive').directive('type', [
       return (Profile.get() && Profile.get().id == scope.type.owner.id);
     }
 
+    /* Default visualization */
+    scope.showDefault = function() {
+      scope.view.path = '/default';
+    }
+
+    scope.setConnection = function(connection) {
+      scope.connection = connection;
+      scope.showDefault();
+    }
+
+
 
     /*
-     * Property behaviour
+     * PROPERTY BEHAVIOUR
      */
 
     /* remove one element to the list of the accepted elements */
-    scope.removeAccepted = function(property, index) {
+    scope.removeAccepted = function(property, index, form) {
       delete property.accepted.splice(index, 1);
-      console.log(property.accepted);
+      form.$setDirty(); // bug (the dirty is not activated otherwise)
     }
 
     /* add one element to the list of the accepted elements */

@@ -193,12 +193,12 @@
   border-bottom: 3px solid #239cbb;
 }
 
-.ly-subheader .ly-connection .ly-name {
+.ly-type .ly-connection .ly-name {
   font-size: 1.3em;
   margin-right: .25em;
 }
 
-.ly-subheader .ly-connection .ly-label {
+.ly-type .ly-connection .ly-label {
   min-height: 1em;
   max-height: 2em;
   padding: .25em .5em;
@@ -208,7 +208,7 @@
   background-color: #eee;
 }
 
-.ly-subheader .ly-menu {
+.ly-type .ly-subheader .ly-menu {
   font-size: 2em;
   position: absolute;
   top: 0.3em;
@@ -220,10 +220,32 @@
  * Properties
  */
 
-.ly-property {
+.ly-type .ly-property {
   border-bottom: 1px solid #f8f8f8;
   position: relative;
 }
+
+
+/*
+ * Connections
+ */
+
+.ly-type .ly-connections .ly-connection {
+  padding: 1em .8em;
+  border-bottom: 1px solid #f8f8f8;
+  cursor: pointer;
+}
+
+.ly-type .ly-connections .ly-connection:hover {
+  color: #239cbb;
+}
+
+.ly-type .ly-connections i {
+  font-size: 1.5em;
+  margin-right: .3em;
+}
+
+
 
 
 /*
@@ -268,7 +290,7 @@
 .ly-form .ly-field .ly-value {
   color: #333;
   font-size: 1em;
-  width: 50%;
+  width: 90%;
 }
 
 .ly-form .ly-field .ly-accepted .ly-value {
@@ -426,11 +448,11 @@
 
 .ly-modal .ly-modal-window .ly-close {
   position: absolute;
-  color: #aaa;
+  color: #fff;
   font-size: 2.5em;
   line-height: 1em;
   right: 0.3em;
-  top: 0em;
+  top: 0.1em;
   z-index: 2000;
 }
 

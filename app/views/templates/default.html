@@ -54,7 +54,7 @@
     <!--  Type subheader  -->
     <!-- ---------------- -->
 
-    <div class="ly-subheader">
+    <div class="ly-subheader" ng-click="view.path='/connections'">
 
       <!-- Connection name -->
 
@@ -80,7 +80,7 @@
       <!-- Side menu -->
 
       <div class="ly-menu">
-        <a href="#"><i class="fa fa-angle-down waves-effect waves-icon"></i></a>
+        <a href="#"><i class="fa fa-angle-down"></i></a>
       </div>
     </div>
 
@@ -89,7 +89,7 @@
     <!--  Properties  -->
     <!-- ------------ -->
 
-    <div class="ly-properties">
+    <div class="ly-properties" ng-show="connection=='properties'">
       <div class="ly-property" ng-repeat="property in type.properties">
 
         <!-- Property form -->
@@ -130,7 +130,7 @@
                 <p class="ly-description">Accepted values (key - value)</p>
                 <div ng-repeat="pair in property.accepted">
                   <div class="ly-accepted">
-                    <a href="" ng-click="removeAccepted(property, $index)"><i class="fa fa-minus"></i></a>
+                    <a href="" ng-click="removeAccepted(property, $index, form)"><i class="fa fa-minus"></i></a>
                     <input class="ly-value ly-accepted-field" placeholder="key" type="text" ng-disabled="!isOwner()" ng-model="pair.key"></input>
                     <input class="ly-value ly-accepted-field" placeholder="value" type="text" ng-disabled="!isOwner()" ng-model="pair.value"></input>
                   </div>
@@ -171,7 +171,41 @@
           </div>
         </form>
       </div>
+    </div>
 
+
+    <div class="ly-connections ly-modal ly-animation-fast" ng-if="view.path=='/connections'">
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+
+        <div class="ly-connections-type">
+          <div class="ly-header">
+            <p class="ly-name">Connection</p>
+          </div>
+          <div class="ly-list">
+            <div class="ly-connection ly-properties" ng-click="setConnection('properties')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Properties</span>
+              <span class="ly-label">{{type.properties.length}}</span>
+            </div>
+            <div class="ly-connection ly-functions" ng-click="setConnection('functions')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Functions</span>
+              <span class="ly-label">{{type.functions.length}}</span>
+            </div>
+            <div class="ly-connection ly-statuses" ng-click="setConnection('statuses')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Statuses</span>
+              <span class="ly-label">{{type.statuses.length}}</span>
+            </div>
+            <div class="ly-connection ly-category" ng-click="setConnection('category')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Category</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
