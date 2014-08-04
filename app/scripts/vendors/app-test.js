@@ -13,5 +13,25 @@ app.run(function($httpBackend, $timeout, Profile) {
 
   // mock requests
   $httpBackend.when('GET', /\/templates\//).passThrough();
+
+  // type requests
   $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
+
+  // propeerty requests
+  $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/properties\//).
+    respond(function(method, url, data, headers) { return [200, updateProperty(data), {}]; });
+
+  var updateProperty = function(data) {
+    console.log(data);
+
+    data = angular.fromJson(data);
+    var property = _.find(type.properties, function(property) {
+      return property.id == data.id
+    });
+
+    var property = type.properties[1];
+    angular.extend(property, data);
+    return data;
+  }
+
 });

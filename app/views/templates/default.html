@@ -94,19 +94,18 @@
 
         <!-- Property form -->
 
-        <form class="ly-form" name="form">
+        <form class="ly-form" name="form" ng-submit="updateProperty(property, form)" novalidate>
           <div class="ly-fields" ng-class="{'ly-owner': isOwner()}">
             <div class="ly-field ly-field-top" ng-class="{'ly-editable': property.open}">
               <i class="fa fa-angle-right" ng-if="!property.open" ng-click="toggle(property)"></i>
               <i class="fa fa-angle-down" ng-if="property.open" ng-click="toggle(property)"></i>
               <input class="ly-value ly-name-field" type="text" ng-disabled="!isOwner() && !property.open" ng-model="property.name"></input>
             </div>
-
-            <a href="" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
-              <span>Save</span> <i class="fa fa-check-circle" ></i>
+            <a href="" ng-click="updateProperty(property, form)" class="ly-save {{property.saving}}" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
+              <span>{{property.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
             </a>
 
-            <div class="ly-detail" ng-if="property.open">
+            <div class="ly-detail" ng-show="property.open">
               <div class="ly-field">
                 <p class="ly-description">ID</p>
                 <input class="ly-value ly-id-field" type="text" disabled ng-model="property.id"></input>
@@ -118,7 +117,10 @@
                   ng-options="key as value for (key , value) in config.property.types">
                 </select>
               </div>
-              <div class="ly-field ly-editable">
+
+              <!-- Text case -->
+
+              <div class="ly-field ly-editable" ng-if="property.type=='text'">
                 <p class="ly-description">Accepted values (key - value)</p>
                 <div ng-repeat="pair in property.accepted">
                   <div class="ly-accepted">
@@ -130,8 +132,30 @@
                 <div class="ly-accepted ly-accepted-add">
                   <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i><span>Add</span></a>
                 </div>
-                </p>
               </div>
+
+              <!-- Range case -->
+
+              <div class="ly-field ly-editable" ng-if="property.type=='range'">
+                  <p class="ly-description">From value</p>
+                  <input class="ly-value ly-range-field" placeholder="min" type="text" ng-disabled="!isOwner()" ng-model="property.range.min"></input>
+              </div>
+              <div class="ly-field ly-editable" ng-if="property.type=='range'">
+                <p class="ly-description">To value</p>
+                <input class="ly-value ly-range-field" placeholder="max" type="text" ng-disabled="!isOwner()" ng-model="property.range.max"></input>
+              </div>
+              <div class="ly-field ly-editable" ng-if="property.type=='range'">
+                <p class="ly-description">With interval</p>
+                <input class="ly-value ly-range-field" placeholder="interval" type="text" ng-disabled="!isOwner()" ng-model="property.range.step"></input>
+              </div>
+
+              <!-- Other cases -->
+
+              <div class="ly-field ly-editable" ng-if="property.type!='text' && property.type!='range'">
+                <p class="ly-description">Accepted values</p>
+                <input class="ly-value ly-default-field" type="text" disabled value="Any {{property.type}} value"></input>
+              </div>
+
               <div class="ly-field ly-editable">
                 <p class="ly-description">Default value</p>
                 <input class="ly-value ly-default-field" type="text" ng-disabled="!isOwner()" ng-model="property.default"></input>

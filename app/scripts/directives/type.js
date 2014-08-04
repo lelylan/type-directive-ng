@@ -10,6 +10,7 @@ angular.module('lelylan.directives.type.directive').directive('type', [
   '$http',
   'Profile',
   'Type',
+  'Property',
 
   function(
     $rootScope,
@@ -18,7 +19,8 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     $templateCache,
     $http,
     Profile,
-    Type
+    Type,
+    Property
   ) {
 
   var definition = {
@@ -120,13 +122,31 @@ angular.module('lelylan.directives.type.directive').directive('type', [
      * Property behaviour
      */
 
+    /* remove one element to the list of the accepted elements */
     scope.removeAccepted = function(property, index) {
       delete property.accepted.splice(index, 1);
       console.log(property.accepted);
     }
 
+    /* add one element to the list of the accepted elements */
     scope.addAccepted = function(property) {
       property.accepted.push({key: '', value: ''});
+    }
+
+    scope.updateProperty = function(property, form) {
+      property.status = 'Saving...';
+      Property.update(property.id, property).
+        success(function(response) {
+          property.status = 'Saved';
+          $timeout(function() {
+            property.status = null;
+            form.$setPristine()
+          }, 2000);
+        }).
+        error(function(data, status) {
+          scope.view.path = '/message';
+          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the property.' }
+        });
     }
 
   }
