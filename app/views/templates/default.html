@@ -61,7 +61,7 @@
       <div class="ly-connection ly-properties" ng-if="connection=='properties'">
         <span class="ly-name">Properties</span>
         <span class="ly-label">{{type.properties.length}}</span>
-        <ul class="ly-add" ng-click="addProperty()">
+        <ul class="ly-add" ng-click="addProperty()" ng-if="isOwner()">
           <li><a href="">Add</a></li>
         </ul>
       </div>
@@ -99,11 +99,11 @@
 
         <form class="ly-form" name="form" ng-submit="updateProperty(property, form)" novalidate>
           <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': property.open}">
-            <a href="" ng-click="updateProperty(property, form)" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}">
+            <a href="" ng-click="updateProperty(property, form)" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}" ng-if="isOwner()">
               <span>{{property.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
             </a>
 
-            <a href="" ng-click="confirmDeleteProperty('property', property, $index)" class="ly-delete">
+            <a href="" ng-click="confirmDeleteProperty('property', property, $index)" class="ly-delete" ng-if="isOwner()">
               <i class="fa fa-minus-circle" ></i>
             </a>
 
@@ -126,6 +126,7 @@
               <div class="ly-field ly-editable">
                 <p class="ly-description">Type</p>
                 <select class="ly-value"
+                  ng-disabled="!isOwner()"
                   ng-model="property.type"
                   ng-options="key as value for (key , value) in config.property.types">
                 </select>
@@ -134,15 +135,19 @@
               <!-- Text case -->
 
               <div class="ly-field ly-editable" ng-if="property.type=='text'">
-                <p class="ly-description">Accepted values (key - value)</p>
+                <p class="ly-description">Accepted values from the device <a href="http://dev.lelylan.com/support#faq-accepted-values" target="_blank"><i class="fa fa-info-circle"></i></a></p>
+                <p class="ly-description">
+                <span>unique key</span>
+                <span>descriptive value</span>
+                </p>
                 <div ng-repeat="pair in property.accepted">
                   <div class="ly-accepted">
-                    <a href="" ng-click="removeAccepted(property, $index, form)"><i class="fa fa-minus"></i></a>
+                    <a href="" ng-click="removeAccepted(property, $index, form)" ng-if="isOwner()"><i class="fa fa-minus"></i></a>
                     <input class="ly-value ly-accepted-field" placeholder="key" type="text" ng-disabled="!isOwner()" ng-model="pair.key"></input>
                     <input class="ly-value ly-accepted-field" placeholder="value" type="text" ng-disabled="!isOwner()" ng-model="pair.value"></input>
                   </div>
                 </div>
-                <div class="ly-accepted ly-accepted-add">
+                <div class="ly-accepted ly-accepted-add" ng-if="isOwner()">
                   <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i><span>Add</span></a>
                 </div>
               </div>

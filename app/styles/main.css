@@ -342,9 +342,21 @@
   width: 90%;
 }
 
+.ly-form .ly-field .ly-description span,
 .ly-form .ly-field .ly-accepted .ly-value {
-  width: 38%;
+  width: 30%;
   margin-right: 1em;
+}
+
+.ly-form .ly-field .ly-description span {
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+
+.ly-form .ly-field .ly-description i {
+  margin-left: .5em;
+  font-size: 1.25em;
 }
 
 .ly-form .ly-field .ly-accepted i {
