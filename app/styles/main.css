@@ -193,6 +193,10 @@
   border-bottom: 3px solid #239cbb;
 }
 
+.ly-type .ly-connection {
+  cursor: pointer;
+}
+
 .ly-type .ly-connection .ly-name {
   font-size: 1.3em;
   margin-right: .25em;
@@ -234,9 +238,14 @@
   padding: 1em .8em;
   border-bottom: 1px solid #f8f8f8;
   cursor: pointer;
+  color: #239cbb;
 }
 
-.ly-type .ly-connections .ly-connection:hover {
+.ly-type .ly-connections .ly-connection .fa {
+  color: #666;
+}
+
+.ly-type .ly-connections .ly-connection:hover .fa {
   color: #239cbb;
 }
 
