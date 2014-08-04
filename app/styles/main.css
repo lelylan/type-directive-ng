@@ -261,8 +261,6 @@
 }
 
 .ly-type .ly-subheader .ly-add li a {
-  font-size: .8em;
-  letter-spacing: 0.8px;
   text-decoration: none;
 }
 
@@ -444,12 +442,11 @@
   top: 1em;
   right: .4em;
   font-size: 1.1em;
-  color: red;
-  opacity: 0.1;
+  color: #eee;
 }
 
 .ly-type .ly-form .ly-delete:hover {
-  opacity: 1;
+  color: red;
 }
 
 .ly-type .ly-form .ly-save.ly-save-enabled {
