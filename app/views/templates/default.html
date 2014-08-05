@@ -77,6 +77,9 @@
       <div class="ly-connection ly-statuses" ng-if="connection=='statuses'">
         <span class="ly-name">Statuses</span>
         <span class="ly-label">{{type.statuses.length}}</span>
+        <ul class="ly-menu-add" ng-click="addStatus()" ng-if="isOwner()">
+          <li><a href="">Add</a></li>
+        </ul>
       </div>
 
       <div class="ly-connection ly-category" ng-if="connection=='category'">
@@ -139,18 +142,18 @@
               <div class="ly-field ly-editable" ng-if="property.type=='text'">
                 <p class="ly-description">Accepted values from the device <a href="http://dev.lelylan.com/support#faq-accepted-values" target="_blank"><i class="fa fa-info-circle"></i></a></p>
                 <p class="ly-description">
-                  <span>device key</span>
+                  <span>received value</span>
                   <span>descriptive value</span>
                 </p>
                 <div ng-repeat="pair in property.accepted">
                   <div class="ly-multiple">
-                    <a href="" ng-click="removeAccepted(property, $index, form)" ng-if="isOwner()"><i class="fa fa-minus"></i></a>
                     <input class="ly-value ly-multiple-field ly-accepted-field" placeholder="key" type="text" ng-disabled="!isOwner()" ng-model="pair.key"></input>
                     <input class="ly-value ly-multiple-field ly-accepted-field" placeholder="value" type="text" ng-disabled="!isOwner()" ng-model="pair.value"></input>
+                    <a href="" ng-click="removeAccepted(property, $index, form)" ng-if="isOwner()"><i class="fa fa-minus-circle ly-remove-multiple"></i></a>
                   </div>
                 </div>
                 <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
-                  <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i><span>Add</span></a>
+                  <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i> <span>Add property</span></a>
                 </div>
               </div>
 
@@ -224,7 +227,7 @@
               </div>
 
               <div class="ly-field ly-editable">
-                <p class="ly-description">Updated properties</p>
+                <p class="ly-description">Properties updated from the function</p>
                 <p class="ly-description">
                   <span>property</span>
                   <span>expected value</span>
@@ -300,7 +303,7 @@
                       ng-model="property.id"
                       ng-options="property.id as property.name for property in type.properties">
                     </select>
-                    <input class="ly-value ly-multiple-field" placeholder="from user" type="text" ng-disabled="!isOwner()" ng-model="property.values"></input>
+                    <input class="ly-value ly-multiple-field" placeholder="any" type="text" ng-disabled="!isOwner()" ng-model="property.values"></input>
                   </div>
                 </div>
                 <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">

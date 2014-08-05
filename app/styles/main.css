@@ -473,20 +473,27 @@ input:focus {
 
 .ly-form .ly-field .ly-description span,
 .ly-form .ly-field .ly-multiple .ly-value {
-  width: 32%;
-  margin-right: 1em;
+  width: 42%;
+  margin-right: .5em;
 }
 
 .ly-form .ly-field .ly-description span {
   display: inline-block;
   text-transform: capitalize;
-  margin-right: 3em;
+  margin-right: .6em;
   font-size: 1.1em;
 }
 
 .ly-form .ly-field .ly-multiple i {
-  font-size: .5em;
-  padding-right: 1em;
+  font-size: 1.2em;
+}
+
+.ly-form .ly-field .ly-multiple .ly-remove-multiple {
+  color: #eee;
+}
+
+.ly-form .ly-field .ly-multiple .ly-remove-multiple:hover {
+  color: red;
 }
 
 .ly-form .ly-field .ly-multiple-field {
@@ -498,9 +505,10 @@ input:focus {
   padding-top: .3em;
 }
 
-.ly-form .ly-field .ly-multiple span {
+.ly-form .ly-field .ly-multiple-add i {
   font-size: .9em;
 }
+
 
 
 

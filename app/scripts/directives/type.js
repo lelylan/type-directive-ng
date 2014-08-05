@@ -47,7 +47,7 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     scope.view = { path: '/loading' }
 
     // active connection
-    scope.connection = 'statuses';
+    scope.connection = 'properties';
 
     // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
