@@ -141,9 +141,12 @@
 
               <div class="ly-field ly-editable" ng-if="property.type=='text'">
                 <p class="ly-description">Accepted values from the device <a href="http://dev.lelylan.com/support#faq-accepted-values" target="_blank"><i class="fa fa-info-circle"></i></a></p>
-                <p class="ly-description" ng-if="property.accepted!=0">
+                <p class="ly-description" ng-if="property.accepted && property.accepted.length!=0">
                   <span>received value</span>
                   <span>descriptive value</span>
+                </p>
+                <p ng-if="!property.accepted || property.accepted.length==0">
+                Any value is accepted
                 </p>
                 <div ng-repeat="pair in property.accepted">
                   <div class="ly-multiple">
@@ -153,7 +156,7 @@
                   </div>
                 </div>
                 <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
-                  <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i> <span>Add property</span></a>
+                  <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i> <span>Add accepted values</span></a>
                 </div>
               </div>
 
@@ -228,8 +231,8 @@
 
               <div class="ly-field ly-editable">
                 <p class="ly-description">Properties updated from the function</p>
-                <p class="ly-description" ng-if="function.properties!=0">
-                  <span>property name</span>
+                <p class="ly-description" ng-if="function.properties.length!=0">
+                  <span>property</span>
                   <span>new value</span>
                 </p>
                 <div ng-repeat="property in function.properties">
