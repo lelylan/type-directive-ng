@@ -141,7 +141,7 @@
 
               <div class="ly-field ly-editable" ng-if="property.type=='text'">
                 <p class="ly-description">Accepted values from the device <a href="http://dev.lelylan.com/support#faq-accepted-values" target="_blank"><i class="fa fa-info-circle"></i></a></p>
-                <p class="ly-description">
+                <p class="ly-description" ng-if="property.accepted!=0">
                   <span>received value</span>
                   <span>descriptive value</span>
                 </p>
@@ -228,23 +228,23 @@
 
               <div class="ly-field ly-editable">
                 <p class="ly-description">Properties updated from the function</p>
-                <p class="ly-description">
-                  <span>property</span>
-                  <span>expected value</span>
+                <p class="ly-description" ng-if="function.properties!=0">
+                  <span>property name</span>
+                  <span>new value</span>
                 </p>
                 <div ng-repeat="property in function.properties">
                   <div class="ly-multiple">
-                    <a href="" ng-click="removeFunctionProperty(function, $index, form)"  ng-if="isOwner()"><i class="fa fa-minus"></i></a>
                     <select class="ly-value"
                       ng-disabled="!isOwner()"
                       ng-model="property.id"
                       ng-options="property.id as property.name for property in type.properties">
                     </select>
                     <input class="ly-value ly-multiple-field" placeholder="from user" type="text" ng-disabled="!isOwner()" ng-model="property.expected"></input>
+                    <a href="" ng-click="removeFunctionProperty(function, $index, form)"  ng-if="isOwner()"><i class="fa fa-minus-circle ly-remove-multiple"></i></a>
                   </div>
                 </div>
                 <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
-                  <a href="" ng-click="addFunctionProperty(function)"><i class="fa fa-plus"></i><span>Add</span></a>
+                  <a href="" ng-click="addFunctionProperty(function)"><i class="fa fa-plus"></i> <span>Add property</span></a>
                 </div>
               </div>
             </div>
@@ -290,24 +290,27 @@
               </div>
 
               <div class="ly-field ly-editable">
-                <p class="ly-description">Updated properties</p>
                 <p class="ly-description">
+                Matching property values
+                <a href="http://dev.lelylan.com/support#faq-device-status" target="_blank"><i class="fa fa-info-circle"></i></a>
+                </p>
+                <p class="ly-description" ng-if="status.properties!=0">
                   <span>property</span>
                   <span>matching value</span>
                 </p>
                 <div ng-repeat="property in status.properties">
                   <div class="ly-multiple">
-                    <a href="" ng-click="removeStatusProperty(status, $index, form)"  ng-if="isOwner()"><i class="fa fa-minus"></i></a>
                     <select class="ly-value"
                       ng-disabled="!isOwner()"
                       ng-model="property.id"
                       ng-options="property.id as property.name for property in type.properties">
                     </select>
                     <input class="ly-value ly-multiple-field" placeholder="any" type="text" ng-disabled="!isOwner()" ng-model="property.values"></input>
+                    <a href="" ng-click="removeStatusProperty(status, $index, form)"  ng-if="isOwner()"><i class="fa fa-minus-circle ly-remove-multiple"></i></a>
                   </div>
                 </div>
                 <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
-                  <a href="" ng-click="addStatusProperty(status)"><i class="fa fa-plus"></i><span>Add</span></a>
+                  <a href="" ng-click="addStatusProperty(status)"><i class="fa fa-plus"></i> <span>Add property</span></a>
                 </div>
               </div>
 

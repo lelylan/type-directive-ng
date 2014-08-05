@@ -36,8 +36,9 @@ app.run(function($httpBackend, $timeout, Profile) {
 
   var updateProperty = function(data) {
     data = angular.fromJson(data);
+    console.log(data)
     var property = _.find(type.properties, function(property) { return property.id == data.id });
-    angular.extend(property, data);
+    if (property) { angular.extend(property, data) }
     return data;
   }
 
@@ -60,7 +61,7 @@ app.run(function($httpBackend, $timeout, Profile) {
   var updateFunction = function(data) {
     data = angular.fromJson(data);
     var _function = _.find(type.functions, function(_function) { return _function.id == data.id });
-    angular.extend(_function, data);
+    if (_function) { angular.extend(_function, data) }
     return data;
   }
 
@@ -84,7 +85,7 @@ app.run(function($httpBackend, $timeout, Profile) {
     data = angular.fromJson(data);
     console.log(data)
     var _status = _.find(type.statuses, function(status) { return status.id == data.id });
-    angular.extend(status, data);
+    if (status) { angular.extend(status, data) }
     return data;
   }
 

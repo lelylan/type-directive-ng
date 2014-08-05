@@ -2,17 +2,7 @@
 
 angular.module('lelylan.directives.type.directive', [])
 
-angular.module('lelylan.directives.type.directive').directive('type', [
-  '$rootScope',
-  '$timeout',
-  '$compile',
-  '$templateCache',
-  '$http',
-  'Profile',
-  'Type',
-  'Property',
-  'Function',
-  'Status',
+angular.module('lelylan.directives.type.directive').directive('type',
 
   function(
     $rootScope,
@@ -299,4 +289,4 @@ angular.module('lelylan.directives.type.directive').directive('type', [
   }
 
   return definition
-}]);
+});
