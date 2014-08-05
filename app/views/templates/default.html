@@ -125,7 +125,6 @@
     </div>
 
 
-
     <!-- ------------ -->
     <!--  Properties  -->
     <!-- ------------ -->
@@ -222,6 +221,48 @@
         </form>
       </div>
     </div>
+
+
+    <!--[> --------- <]-->
+    <!--[> Functions <]-->
+    <!--[> --------- <]-->
+
+    <!--<div class="ly-functions" ng-show="connection=='functions'">-->
+      <!--<div class="ly-function" ng-repeat="function in type.functions">-->
+
+        <!--<form class="ly-form" name="form" ng-submit="updateFunction(function, form)" novalidate>-->
+          <!--<div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': function.open}">-->
+            <!--<a href="" ng-click="updateFunction(function, form)" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}" ng-if="isOwner()">-->
+              <!--<span>{{function.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>-->
+            <!--</a>-->
+
+            <!--<a href="" ng-click="confirmDeleteConnection(function, $index, 'functions')" class="ly-delete" ng-if="isOwner()">-->
+              <!--<i class="fa fa-minus-circle" ></i>-->
+            <!--</a>-->
+
+            <!--<div class="ly-field ly-field-top" ng-click="toggle(function)">-->
+              <!--<i class="fa fa-angle-right" ng-if="!function.open"></i>-->
+              <!--<i class="fa fa-angle-down" ng-if="function.open"></i>-->
+              <!--<input class="ly-value ly-name-field" type="text" disabled ng-model="function.name"></input>-->
+            <!--</div>-->
+
+            <!--<div class="ly-detail" ng-show="function.open">-->
+
+              <!--<div class="ly-field ly-editable">-->
+                <!--<p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>-->
+                <!--<input class="ly-value" type="text" ng-disabled="!isOwner()" name="name" ng-model="function.name" required></input>-->
+              <!--</div>-->
+
+              <!--<div class="ly-field">-->
+                <!--<p class="ly-description">ID</p>-->
+                <!--<input class="ly-value ly-id-field" type="text" disabled ng-model="function.id"></input>-->
+              <!--</div>-->
+
+            <!--</div>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
 
 
     <!-- ----------------- -->

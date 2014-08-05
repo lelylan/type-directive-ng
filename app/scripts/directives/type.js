@@ -154,8 +154,10 @@ angular.module('lelylan.directives.type.directive').directive('type', [
         success(function(response) {
           response.open = true;
           scope.type.properties.unshift(response);
+          var params = {};
           var properties = _.pluck(scope.type.properties, 'id')
-          Type.update(scope.type.id, { properties: properties });
+          params[name] = properties;
+          Type.update(scope.type.id, params);
         });
     }
 
