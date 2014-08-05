@@ -1,9 +1,9 @@
 {
-  "name": "device-directive-ng",
-  "version": "0.2.0-beta.4",
+  "name": "type-directive-ng",
+  "version": "0.2.0-beta",
   "main": [
-    "dist/device-directive-ng.js",
-    "dist/device-directive-ng.css"
+    "dist/type-directive-ng.js",
+    "dist/type-directive-ng.css"
   ],
   "ignore": [
     "app",
