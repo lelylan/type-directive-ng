@@ -11,6 +11,8 @@ angular.module('lelylan.directives.type.directive').directive('type', [
   'Profile',
   'Type',
   'Property',
+  'Function',
+  'Status',
 
   function(
     $rootScope,
@@ -20,7 +22,9 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     $http,
     Profile,
     Type,
-    Property
+    Property,
+    Function,
+    Status
   ) {
 
   var definition = {
@@ -117,11 +121,12 @@ angular.module('lelylan.directives.type.directive').directive('type', [
       return (Profile.get() && Profile.get().id == scope.type.owner.id);
     }
 
-    /* Default visualization */
+    /* default visualization */
     scope.showDefault = function() {
       scope.view.path = '/default';
     }
 
+    /* set the visible connection (properties, functions, status or category) */
     scope.setConnection = function(connection) {
       scope.connection = connection;
       scope.showDefault();
@@ -154,28 +159,6 @@ angular.module('lelylan.directives.type.directive').directive('type', [
         });
     }
 
-    scope.confirmDeleteProperty = function(type, property, index) {
-      scope.toDelete = { type: type, connection: property, index: index };
-      scope.view.path = '/delete' ;
-    }
-
-    scope.deleteProperty = function(confirm) {
-      if (scope.toDelete.connection.name == confirm) {
-        var connection = scope.toDelete.connection;
-        var index = scope.toDelete.index;
-
-        if (scope.toDelete.type == 'property') {
-          Property.delete(connection.id).
-            success(function(response) {
-              scope.type.properties.splice(index, 1);
-              var properties = _.pluck(scope.type.properties, 'id')
-              Type.update(scope.type.id, { properties: properties });
-              scope.showDefault();
-            });
-        }
-      }
-    }
-
     scope.updateProperty = function(property, form) {
       property.status = 'Saving';
       Property.update(property.id, property).
@@ -190,6 +173,39 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the property.' }
         });
     }
+
+
+
+    /*
+     * CONNECTION DELETION BEHAVIOUR
+     */
+
+    scope.confirmDeleteConnection = function(connection, index, name) {
+      scope.deleting = { connection: connection, index: index, name: name };
+      if (scope.deleting.name == 'properties') { scope.deleting.klass = Property }
+      if (scope.deleting.name == 'functions')  { scope.deleting.klass = Function }
+      if (scope.deleting.name == 'statuses')   { scope.deleting.klass = Status }
+      scope.view.path = '/delete' ;
+    }
+
+    scope.deleteConnection = function(confirm) {
+      if (scope.deleting.connection.name == confirm) {
+
+        var klass      = scope.deleting.klass;
+        var connection = scope.deleting.connection;
+        var index      = scope.deleting.index;
+        var name       = scope.deleting.name;
+
+        scope.deleting.klass.delete(connection.id).
+          success(function(response) {
+            scope.type[name].splice(index, 1);
+            var connections = _.pluck(scope.type[name], 'id');
+            Type.update(scope.type.id, { properties: connections });
+            scope.showDefault();
+          });
+      }
+    }
+
 
   }
 

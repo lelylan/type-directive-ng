@@ -15,29 +15,26 @@ app.run(function($httpBackend, $timeout, Profile) {
   // mock requests
   $httpBackend.when('GET', /\/templates\//).passThrough();
 
-  // type requests
-  $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
+  /*
+   * Type mocks
+   */
 
-  // type requests (connection update)
+  $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
   $httpBackend.whenPUT('http://api.lelylan.com/types/1').respond(type);
 
-  // property create
-  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/properties/).respond(property);
+  /*
+   * Property mocks
+   */
 
-  // property update
+  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/properties/).respond(property);
   $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/properties\//).
     respond(function(method, url, data, headers) { return [200, updateProperty(data), {}]; });
-
-  // property delete
   $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/properties\//).
     respond(function(method, url, data, headers) { return [200, deleteProperty(data), {}]; });
 
   var updateProperty = function(data) {
     data = angular.fromJson(data);
-    var property = _.find(type.properties, function(property) {
-      return property.id == data.id
-    });
-
+    var property = _.find(type.properties, function(property) { return property.id == data.id });
     var property = type.properties[1];
     angular.extend(property, data);
     return data;

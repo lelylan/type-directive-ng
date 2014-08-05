@@ -61,7 +61,7 @@
       <div class="ly-connection ly-properties" ng-if="connection=='properties'">
         <span class="ly-name">Properties</span>
         <span class="ly-label">{{type.properties.length}}</span>
-        <ul class="ly-add" ng-click="addProperty()" ng-if="isOwner()">
+        <ul class="ly-menu-add" ng-click="addProperty()" ng-if="isOwner()">
           <li><a href="">Add</a></li>
         </ul>
       </div>
@@ -80,12 +80,50 @@
         <span class="ly-name">Category</span>
       </div>
 
-      <!-- Side menu -->
-
       <div class="ly-menu" ng-click="view.path='/connections'">
         <a href="#"><i class="fa fa-angle-down"></i></a>
       </div>
     </div>
+
+
+    <!-- ----------------- -->
+    <!-- Connection choice -->
+    <!-- ----------------- -->
+
+    <div class="ly-connections ly-modal ly-animation-fast" ng-if="view.path=='/connections'">
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+
+        <div class="ly-connections-type">
+          <div class="ly-header">
+            <p class="ly-name">Connections</p>
+          </div>
+          <div class="ly-list">
+            <div class="ly-connection ly-properties" ng-click="setConnection('properties')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Properties</span>
+              <span class="ly-label">{{type.properties.length}}</span>
+            </div>
+            <div class="ly-connection ly-functions" ng-click="setConnection('functions')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Functions</span>
+              <span class="ly-label">{{type.functions.length}}</span>
+            </div>
+            <div class="ly-connection ly-statuses" ng-click="setConnection('statuses')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Statuses</span>
+              <span class="ly-label">{{type.statuses.length}}</span>
+            </div>
+            <div class="ly-connection ly-category" ng-click="setConnection('category')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Category</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 
     <!-- ------------ -->
@@ -103,7 +141,7 @@
               <span>{{property.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
             </a>
 
-            <a href="" ng-click="confirmDeleteProperty('property', property, $index)" class="ly-delete" ng-if="isOwner()">
+            <a href="" ng-click="confirmDeleteConnection(property, $index, 'properties')" class="ly-delete" ng-if="isOwner()">
               <i class="fa fa-minus-circle" ></i>
             </a>
 
@@ -137,8 +175,8 @@
               <div class="ly-field ly-editable" ng-if="property.type=='text'">
                 <p class="ly-description">Accepted values from the device <a href="http://dev.lelylan.com/support#faq-accepted-values" target="_blank"><i class="fa fa-info-circle"></i></a></p>
                 <p class="ly-description">
-                <span>unique key</span>
-                <span>descriptive value</span>
+                  <span>device key</span>
+                  <span>descriptive value</span>
                 </p>
                 <div ng-repeat="pair in property.accepted">
                   <div class="ly-accepted">
@@ -199,12 +237,12 @@
           <div class="ly-header">
             <p class="ly-name">Delete</p>
           </div>
-          <form class="ly-form" ng-submit="deleteProperty(confirm)">
+          <form class="ly-form" ng-submit="deleteConnection(confirm)">
             <div ng-class="{'ly-owner': isOwner()}">
               <div>
                 <p class="ly-info">
-                Deleting your {{toDelete.type}} is irreversible.
-                Enter the {{toDelete.type}} name to confirm you want to permanently delete.
+                Deleting one of your {{deleting.name}} is irreversible.
+                Enter the name to confirm you want to permanently delete it.
                 </p>
               </div>
 
@@ -212,7 +250,7 @@
                 <input class="ly-value ly-name" type="text" autofocus placeholder="Property name" ng-model="confirm"></input>
               </div>
               <div class="ly-actions">
-                <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=toDelete.connection.name}">delete</button>
+                <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=deleting.connection.name}">delete</button>
               </div>
             </div>
           </form>
@@ -220,39 +258,5 @@
       </div>
     </div>
 
-
-    <div class="ly-connections ly-modal ly-animation-fast" ng-if="view.path=='/connections'">
-      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
-      <div class="ly-modal-window">
-        <a class="ly-close" href="" ng-click="showDefault()">×</a>
-
-        <div class="ly-connections-type">
-          <div class="ly-header">
-            <p class="ly-name">Connections</p>
-          </div>
-          <div class="ly-list">
-            <div class="ly-connection ly-properties" ng-click="setConnection('properties')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Properties</span>
-              <span class="ly-label">{{type.properties.length}}</span>
-            </div>
-            <div class="ly-connection ly-functions" ng-click="setConnection('functions')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Functions</span>
-              <span class="ly-label">{{type.functions.length}}</span>
-            </div>
-            <div class="ly-connection ly-statuses" ng-click="setConnection('statuses')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Statuses</span>
-              <span class="ly-label">{{type.statuses.length}}</span>
-            </div>
-            <div class="ly-connection ly-category" ng-click="setConnection('category')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Category</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
