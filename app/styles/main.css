@@ -333,6 +333,52 @@ input:focus {
 
 
 /*
+ * Category
+ */
+
+.ly-type .ly-categories {
+  margin: .5em 0 1em .15em;
+}
+
+.ly-type .ly-category-item {
+  border: 1px solid #f8f8f8;
+  cursor: pointer;
+  display: inline-block;
+  margin: .5em 0 0 .5em;
+  padding: .7em .5em;
+  position: relative;
+}
+
+.ly-type .ly-category-item .fa-star-o,
+.ly-type .ly-category-item:hover .fa-star {
+  display: inline
+}
+
+.ly-type .ly-category-item .fa-star,
+.ly-type .ly-category-item:hover .fa-star-o {
+  display: none;
+}
+
+.ly-type .ly-category-item.ly-active {
+  background-color: #239cbb;
+}
+
+.ly-type .ly-category-item.ly-active .fa-star {
+  display: inline;
+}
+
+.ly-type .ly-category-item.ly-active .fa-star-o {
+  display: none;
+}
+
+.ly-type .ly-category-item.ly-active a,
+.ly-type .ly-category-item.ly-active .fa {
+  color: #fff;
+}
+
+
+
+/*
  * Form
  */
 

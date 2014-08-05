@@ -3,7 +3,7 @@
     "uri": "http://www.example.com/types/50042612d033a9b4ac0007fa",
     "name": "Dimmer",
     "description": "Dimmer description",
-    "categories": ["lights"],
+    "category": "lights",
     "owner": {
       "id": "1",
       "uri": "http://api.lelylan.com/people/1"

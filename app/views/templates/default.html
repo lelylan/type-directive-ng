@@ -329,6 +329,21 @@
     </div>
 
 
+    <!-- -------- -->
+    <!-- Category -->
+    <!-- -------- -->
+
+    <div class="ly-categories" ng-show="connection=='category'">
+      <div class="ly-category-item" ng-repeat="category in categories" ng-click="updateCategory(category.tag)" ng-class="{'ly-active': category.tag == type.category}">
+        <a href="">
+          <i class="fa fa-star-o"></i>
+          <i class="fa fa-star"></i>
+          {{category.name}}
+        </a>
+      </div>
+    </div>
+
+
     <!-- ----------------- -->
     <!-- Connection Delete -->
     <!-- ----------------- -->

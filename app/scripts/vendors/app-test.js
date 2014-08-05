@@ -9,10 +9,11 @@ app.run(function($httpBackend, $timeout, Profile) {
   Profile.set({id: '1'});
 
   // stub requests
-  var type      = JSON.parse(readFixtures('type.json'));
-  var property  = JSON.parse(readFixtures('property.json'));
-  var _function = JSON.parse(readFixtures('function.json'));
-  var status    = JSON.parse(readFixtures('status.json'));
+  var type       = JSON.parse(readFixtures('type.json'));
+  var property   = JSON.parse(readFixtures('property.json'));
+  var _function  = JSON.parse(readFixtures('function.json'));
+  var status     = JSON.parse(readFixtures('status.json'));
+  var categories = JSON.parse(readFixtures('categories.json'));
 
   // mock requests
   $httpBackend.when('GET', /\/templates\//).passThrough();
@@ -22,8 +23,14 @@ app.run(function($httpBackend, $timeout, Profile) {
    */
 
   $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
-  $httpBackend.whenPUT('http://api.lelylan.com/types/1').respond(type);
+  $httpBackend.whenPUT('http://api.lelylan.com/types/1').
+    respond(function(method, url, data, headers) { return [200, updateType(data), {}]; });
 
+  var updateType = function(data) {
+    data = angular.fromJson(data);
+    angular.extend(type, data);
+    return type;
+  }
   /*
    * Property mocks
    */
@@ -36,10 +43,9 @@ app.run(function($httpBackend, $timeout, Profile) {
 
   var updateProperty = function(data) {
     data = angular.fromJson(data);
-    console.log(data)
     var property = _.find(type.properties, function(property) { return property.id == data.id });
     if (property) { angular.extend(property, data) }
-    return data;
+    return property;
   }
 
   var deleteProperty = function(data) {
@@ -93,5 +99,12 @@ app.run(function($httpBackend, $timeout, Profile) {
     var _status = type.statuses.splice(0, 1);
     return _status;
   }
+
+
+  /*
+   * Categories mocks
+   */
+
+  $httpBackend.whenGET(/http:\/\/api.lelylan.com\/categories/).respond(categories);
 
 });

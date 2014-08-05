@@ -14,7 +14,8 @@ angular.module('lelylan.directives.type.directive').directive('type',
     Type,
     Property,
     Function,
-    Status
+    Status,
+    Category
   ) {
 
   var definition = {
@@ -37,7 +38,7 @@ angular.module('lelylan.directives.type.directive').directive('type',
     scope.view = { path: '/loading' }
 
     // active connection
-    scope.connection = 'properties';
+    scope.connection = 'category';
 
     // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
@@ -89,6 +90,11 @@ angular.module('lelylan.directives.type.directive').directive('type',
           error(function(data, status) {
             scope.view.path = '/message';
             scope.message   = { title: 'Something went wrong', description: 'Most probably the type you are trying to load does not exist' }
+          });
+
+        Category.all().
+          success(function(response) {
+            scope.categories = response;
           });
       }
     });
@@ -252,6 +258,18 @@ angular.module('lelylan.directives.type.directive').directive('type',
     }
 
 
+    /*
+     * CATEGORY BEHAVIOUR
+     */
+
+    scope.updateCategory = function(category) {
+      scope.type.category = category;
+      Type.update(scope.type.id, scope.type).
+        error(function() {
+          scope.view.path = '/message';
+          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
+        });
+    }
 
     /*
      * CONNECTION DELETION BEHAVIOUR
