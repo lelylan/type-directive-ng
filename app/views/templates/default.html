@@ -251,6 +251,78 @@
     </div>
 
 
+    <!-- -------- -->
+    <!-- Statuses -->
+    <!-- -------- -->
+
+    <div class="ly-statuses" ng-show="connection=='statuses'">
+      <div class="ly-status ly-item" ng-repeat="status in type.statuses">
+
+        <form class="ly-form" name="form" ng-submit="updateStatus(status, form)" novalidate>
+          <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': status.open}">
+            <a href="" ng-click="updateStatus(status, form)" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}" ng-if="isOwner()">
+              <span>{{status.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
+            </a>
+
+            <a href="" ng-click="confirmDeleteConnection(status, $index, 'statuses')" class="ly-delete" ng-if="isOwner()">
+              <i class="fa fa-minus-circle" ></i>
+            </a>
+
+            <div class="ly-field ly-field-top" ng-click="toggle(status)">
+              <i class="fa fa-angle-right" ng-if="!status.open"></i>
+              <i class="fa fa-angle-down" ng-if="status.open"></i>
+              <input class="ly-value ly-name-field" type="text" disabled ng-model="status.name"></input>
+            </div>
+
+            <div class="ly-detail" ng-show="status.open">
+
+              <div class="ly-field ly-editable">
+                <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>
+                <input class="ly-value" type="text" ng-disabled="!isOwner()" name="name" ng-model="status.name" required></input>
+              </div>
+
+              <div class="ly-field">
+                <p class="ly-description">ID</p>
+                <input class="ly-value ly-id-field" type="text" disabled ng-model="status.id"></input>
+              </div>
+
+              <div class="ly-field ly-editable">
+                <p class="ly-description">Updated properties</p>
+                <p class="ly-description">
+                  <span>property</span>
+                  <span>matching value</span>
+                </p>
+                <div ng-repeat="property in status.properties">
+                  <div class="ly-multiple">
+                    <a href="" ng-click="removeStatusProperty(status, $index, form)"  ng-if="isOwner()"><i class="fa fa-minus"></i></a>
+                    <select class="ly-value"
+                      ng-disabled="!isOwner()"
+                      ng-model="property.id"
+                      ng-options="property.id as property.name for property in type.properties">
+                    </select>
+                    <input class="ly-value ly-multiple-field" placeholder="from user" type="text" ng-disabled="!isOwner()" ng-model="property.values"></input>
+                  </div>
+                </div>
+                <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
+                  <a href="" ng-click="addStatusProperty(status)"><i class="fa fa-plus"></i><span>Add</span></a>
+                </div>
+              </div>
+
+              <div class="ly-field">
+                <p class="ly-description">Default function when {{status.name}}</p>
+                <select class="ly-value"
+                  ng-disabled="!isOwner()"
+                  ng-model="status.function.id"
+                  ng-options="function.id as function.name for function in type.functions">
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
     <!-- ----------------- -->
     <!-- Connection Delete -->
     <!-- ----------------- -->

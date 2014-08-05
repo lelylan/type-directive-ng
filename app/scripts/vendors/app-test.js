@@ -9,9 +9,10 @@ app.run(function($httpBackend, $timeout, Profile) {
   Profile.set({id: '1'});
 
   // stub requests
-  var type = JSON.parse(readFixtures('type.json'));
-  var property = JSON.parse(readFixtures('property.json'));
+  var type      = JSON.parse(readFixtures('type.json'));
+  var property  = JSON.parse(readFixtures('property.json'));
   var _function = JSON.parse(readFixtures('function.json'));
+  var status    = JSON.parse(readFixtures('status.json'));
 
   // mock requests
   $httpBackend.when('GET', /\/templates\//).passThrough();
@@ -52,9 +53,9 @@ app.run(function($httpBackend, $timeout, Profile) {
 
   $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/functions/).respond(_function);
   $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/functions\//).
-    respond(function(method, url, data, headers) { return [200, updateFunction(data), {}]; });
+    respond(function(method, url, data, headers) { return [200, updateFunction(data), {}] });
   $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/functions\//).
-    respond(function(method, url, data, headers) { return [200, deleteFunction(data), {}]; });
+    respond(function(method, url, data, headers) { return [200, deleteFunction(data), {}] });
 
   var updateFunction = function(data) {
     data = angular.fromJson(data);
@@ -68,5 +69,28 @@ app.run(function($httpBackend, $timeout, Profile) {
     return _function;
   }
 
+
+  /*
+   * Status mocks
+   */
+
+  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/statuses/).respond(status);
+  $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/statuses\//).
+    respond(function(method, url, data, headers) { return [200, updateStatus(data), {}] });
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/statuses\//).
+    respond(function(method, url, data, headers) { return [200, deleteStatus(data), {}] });
+
+  var updateStatus = function(data) {
+    data = angular.fromJson(data);
+    console.log(data)
+    var _status = _.find(type.statuses, function(status) { return status.id == data.id });
+    angular.extend(status, data);
+    return data;
+  }
+
+  var deleteStatus = function(data) {
+    var _status = type.statuses.splice(0, 1);
+    return _status;
+  }
 
 });

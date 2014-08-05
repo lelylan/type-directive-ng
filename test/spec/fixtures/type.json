@@ -166,7 +166,7 @@
           "id": "1",
           "uri": "http://www.example.com/properties/status",
           "pending": false,
-          "values": ["on"],
+          "values": ["on", "off"],
           "ranges": []
         }]
       }, {

@@ -47,7 +47,7 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     scope.view = { path: '/loading' }
 
     // active connection
-    scope.connection = 'functions';
+    scope.connection = 'statuses';
 
     // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
@@ -70,7 +70,6 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     };
 
 
-
     /*
      * DYNAMIC LAYOUT
      */
@@ -85,7 +84,6 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     compile();
 
 
-
     /*
      * API REQUESTS
      */
@@ -97,7 +95,6 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           success(function(response) {
             scope.view.path = '/default';
             scope.type = response;
-            normalize(scope.type);
           }).
           error(function(data, status) {
             scope.view.path = '/message';
@@ -105,21 +102,6 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           });
       }
     });
-
-    var normalize = function(type) {
-      // set the property name into the function properties
-      _.each(scope.type.functions, function(_function) {
-        _.each(_function.properties, function(property) {
-          var result = _.find(scope.type.properties, function(_property) {
-            return _property.id == property.id
-          });
-          property.name = result.name;
-        })
-      });
-
-      console.log(scope.type.functions)
-    }
-
 
 
     /*
@@ -148,13 +130,12 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     }
 
 
-
     /*
      * PROPERTY BEHAVIOUR
      */
 
     scope.addProperty = function() {
-      Property.create({name: 'New property', type: 'text'}).
+      Property.create({name: 'New', type: 'text'}).
         success(function(response) {
           response.open = true;
           scope.type.properties.unshift(response);
@@ -195,7 +176,7 @@ angular.module('lelylan.directives.type.directive').directive('type', [
      */
 
     scope.addFunction = function() {
-      Function.create({name: 'New function'}).
+      Function.create({name: 'New'}).
         success(function(response) {
           response.open = true;
           scope.type.functions.unshift(response);
@@ -230,6 +211,55 @@ angular.module('lelylan.directives.type.directive').directive('type', [
       _function.properties.push({ id: '', value: ''});
     }
 
+
+    /*
+     * STATUSES BEHAVIOUR
+     */
+
+    scope.addStatus = function() {
+      Status.create({ name: 'New'}).
+        success(function(response) {
+          response.open = true;
+          scope.type.statuses.unshift(response);
+          var statuses = _.pluck(scope.type.statuses, 'id')
+          Type.update(scope.type.id, { statuses: statuses });
+        });
+    }
+
+    scope.updateStatus = function(status, form) {
+      status.status = 'Saving';
+
+      // normalize status property values to be array
+      _.each(status.properties, function(property) {
+        if ((typeof property.values) == 'string') {
+          property.values = property.values.replace(/ /g,'');
+          property.values = property.values.split(',')
+        }
+      });
+
+      Status.update(status.id, status).
+        success(function(response) {
+          $timeout(function() {
+            status.status = null;
+            form.$setPristine()
+          }, 500);
+        }).
+        error(function(data, status) {
+          scope.view.path = '/message';
+          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
+        });
+    }
+
+    /* remove one element to the list of the accepted elements */
+    scope.removeStatusProperty = function(status, index, form) {
+      delete status.properties.splice(index, 1);
+      form.$setDirty(); // bug (the dirty is not activated otherwise)
+    }
+
+    /* add one element to the list of the accepted elements */
+    scope.addStatusProperty = function(status) {
+      status.properties.push({ id: '', values: []});
+    }
 
 
 
