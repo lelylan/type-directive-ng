@@ -86,44 +86,6 @@
     </div>
 
 
-    <!-- ----------------- -->
-    <!-- Connection choice -->
-    <!-- ----------------- -->
-
-    <div class="ly-connections ly-modal ly-animation-fast" ng-if="view.path=='/connections'">
-      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
-      <div class="ly-modal-window">
-        <a class="ly-close" href="" ng-click="showDefault()">×</a>
-
-        <div class="ly-connections-type">
-          <div class="ly-header">
-            <p class="ly-name">Connections</p>
-          </div>
-          <div class="ly-list">
-            <div class="ly-connection ly-properties" ng-click="setConnection('properties')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Properties</span>
-              <span class="ly-label">{{type.properties.length}}</span>
-            </div>
-            <div class="ly-connection ly-functions" ng-click="setConnection('functions')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Functions</span>
-              <span class="ly-label">{{type.functions.length}}</span>
-            </div>
-            <div class="ly-connection ly-statuses" ng-click="setConnection('statuses')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Statuses</span>
-              <span class="ly-label">{{type.statuses.length}}</span>
-            </div>
-            <div class="ly-connection ly-category" ng-click="setConnection('category')">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Category</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
     <!-- ------------ -->
     <!--  Properties  -->
@@ -295,6 +257,45 @@
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ----------------- -->
+    <!-- Connection choice -->
+    <!-- ----------------- -->
+
+    <div class="ly-connections ly-modal ly-animation-fast" ng-if="view.path=='/connections'">
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+
+        <div class="ly-connections-type">
+          <div class="ly-header">
+            <p class="ly-name">Connections</p>
+          </div>
+          <div class="ly-list">
+            <div class="ly-connection ly-properties" ng-click="setConnection('properties')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Properties</span>
+              <span class="ly-label">{{type.properties.length}}</span>
+            </div>
+            <div class="ly-connection ly-functions" ng-click="setConnection('functions')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Functions</span>
+              <span class="ly-label">{{type.functions.length}}</span>
+            </div>
+            <div class="ly-connection ly-statuses" ng-click="setConnection('statuses')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Statuses</span>
+              <span class="ly-label">{{type.statuses.length}}</span>
+            </div>
+            <div class="ly-connection ly-category" ng-click="setConnection('category')">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Category</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
