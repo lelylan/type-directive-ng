@@ -37,7 +37,7 @@ angular.module('lelylan.directives.type.directive').directive('type',
     scope.view = { path: '/loading' }
 
     // active connection
-    scope.connection = 'properties';
+    scope.connection = 'category';
 
     // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
@@ -263,12 +263,14 @@ angular.module('lelylan.directives.type.directive').directive('type',
      */
 
     scope.updateCategory = function(category) {
-      scope.type.category = category;
-      Type.update(scope.type.id, { category: category }).
-        error(function() {
-          scope.view.path = '/message';
-          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
-        });
+      if (scope.isOwner()) {
+        scope.type.category = category;
+        Type.update(scope.type.id, { category: category }).
+          error(function() {
+            scope.view.path = '/message';
+            scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
+          });
+      }
     }
 
 

@@ -333,7 +333,7 @@
     <!-- Category -->
     <!-- -------- -->
 
-    <div class="ly-categories" ng-show="connection=='category'">
+    <div class="ly-categories" ng-show="connection=='category'" ng-class="{ 'ly-no-owner': !isOwner() }">
       <div class="ly-category-item" ng-repeat="category in categories" ng-click="updateCategory(category.tag)" ng-class="{'ly-active': category.tag == type.category}">
         <a href="">
           <i class="fa fa-star-o"></i>
