@@ -120,7 +120,7 @@
 
             <div class="ly-detail" ng-show="property.open">
 
-              <div class="ly-field ly-editable">
+              <div class="ly-field ly-editable" ng-if="isOwner()">
                 <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>
                 <input class="ly-value" type="text" ng-disabled="!isOwner()" name="name" ng-model="property.name" required></input>
               </div>
@@ -314,7 +314,7 @@
                 </div>
               </div>
 
-              <div class="ly-field">
+              <div class="ly-field ly-editable">
                 <p class="ly-description">Default function when {{status.name}}</p>
                 <select class="ly-value"
                   ng-disabled="!isOwner()"
@@ -434,7 +434,7 @@
           <div class="ly-list">
             <div class="ly-connection ly-properties" ng-click="view.path='/edit'">
               <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Edit type name</span>
+              <span class="ly-name">Edit name</span>
             </div>
             <div class="ly-connection ly-functions"  ng-click="view.path='/delete-type'">
               <i class="fa fa-angle-right"></i>
