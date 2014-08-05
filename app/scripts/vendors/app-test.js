@@ -53,7 +53,7 @@ app.run(function($httpBackend, $timeout, Profile) {
   $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/functions/).respond(_function);
   $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/functions\//).
     respond(function(method, url, data, headers) { return [200, updateFunction(data), {}]; });
-  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/properties\//).
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/functions\//).
     respond(function(method, url, data, headers) { return [200, deleteFunction(data), {}]; });
 
   var updateFunction = function(data) {

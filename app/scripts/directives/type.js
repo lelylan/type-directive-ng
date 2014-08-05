@@ -153,17 +153,6 @@ angular.module('lelylan.directives.type.directive').directive('type', [
      * PROPERTY BEHAVIOUR
      */
 
-    /* remove one element to the list of the accepted elements */
-    scope.removeAccepted = function(property, index, form) {
-      delete property.accepted.splice(index, 1);
-      form.$setDirty(); // bug (the dirty is not activated otherwise)
-    }
-
-    /* add one element to the list of the accepted elements */
-    scope.addAccepted = function(property) {
-      property.accepted.push({key: '', value: ''});
-    }
-
     scope.addProperty = function() {
       Property.create({name: 'New property', type: 'text'}).
         success(function(response) {
@@ -187,6 +176,17 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           scope.view.path = '/message';
           scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
         });
+    }
+
+    /* remove one element to the list of the accepted elements */
+    scope.removeAccepted = function(property, index, form) {
+      delete property.accepted.splice(index, 1);
+      form.$setDirty(); // bug (the dirty is not activated otherwise)
+    }
+
+    /* add one element to the list of the accepted elements */
+    scope.addAccepted = function(property) {
+      property.accepted.push({key: '', value: ''});
     }
 
 
@@ -218,6 +218,19 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
         });
     }
+
+    /* remove one element to the list of the effected properties */
+    scope.removeFunctionProperty = function(_function, index, form) {
+      delete _function.properties.splice(index, 1);
+      form.$setDirty(); // bug (the dirty is not activated otherwise)
+    }
+
+    /* add one element to the list of the effected properties */
+    scope.addFunctionProperty = function(_function) {
+      _function.properties.push({ id: '', value: ''});
+    }
+
+
 
 
     /*

@@ -231,7 +231,7 @@
                 </p>
                 <div ng-repeat="property in function.properties">
                   <div class="ly-multiple">
-                    <a href="" ng-click="" ng-if="isOwner()"><i class="fa fa-minus"></i></a>
+                    <a href="" ng-click="removeFunctionProperty(function, $index, form)"  ng-if="isOwner()"><i class="fa fa-minus"></i></a>
                     <select class="ly-value"
                       ng-disabled="!isOwner()"
                       ng-model="property.id"
@@ -241,7 +241,7 @@
                   </div>
                 </div>
                 <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
-                  <a href="" ng-click=""><i class="fa fa-plus"></i><span>Add</span></a>
+                  <a href="" ng-click="addFunctionProperty(function)"><i class="fa fa-plus"></i><span>Add</span></a>
                 </div>
               </div>
             </div>
