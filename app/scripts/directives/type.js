@@ -29,7 +29,6 @@ angular.module('lelylan.directives.type.directive').directive('type',
 
   definition.link = function(scope, element, attrs) {
 
-
     /*
      * CONFIGURATIONS
      */
@@ -163,6 +162,7 @@ angular.module('lelylan.directives.type.directive').directive('type',
 
     /* add one element to the list of the accepted elements */
     scope.addAccepted = function(property) {
+      if (!property.accepted) { property.accepted = [] }
       property.accepted.push({key: '', value: ''});
     }
 
@@ -264,7 +264,7 @@ angular.module('lelylan.directives.type.directive').directive('type',
 
     scope.updateCategory = function(category) {
       scope.type.category = category;
-      Type.update(scope.type.id, scope.type).
+      Type.update(scope.type.id, { category: category }).
         error(function() {
           scope.view.path = '/message';
           scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
@@ -278,7 +278,7 @@ angular.module('lelylan.directives.type.directive').directive('type',
 
     scope.updateType = function() {
       scope.showDefault();
-      Type.update(scope.type.id, scope.type).
+      Type.update(scope.type.id, { name: scope.type.name } ).
         success(function(response) {
           scope.type.name = response.name;
         }).
@@ -326,8 +326,8 @@ angular.module('lelylan.directives.type.directive').directive('type',
             scope.type[name].splice(index, 1);
             var connections = _.pluck(scope.type[name], 'id');
             var params = {};
-            params[name] = _.pluck(scope.type.properties, 'id');
-            Type.update(scope.type.id, { properties: connections });
+            params[name] = _.pluck(scope.type[name], 'id');
+            Type.update(scope.type.id, params);
             scope.showDefault();
           });
       }

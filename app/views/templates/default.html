@@ -44,7 +44,7 @@
 
       <!-- Side menu -->
 
-      <div class="ly-menu">
+      <div class="ly-menu" ng-if="isOwner()">
         <a href="" ng-click="view.path='/menu'"><i class="fa fa-ellipsis-v"></i></a>
       </div>
     </div>
@@ -457,7 +457,7 @@
         <a class="ly-close" href="" ng-click="showDefault()">×</a>
         <div class="ly-connection-delete">
           <div class="ly-header">
-            <p class="ly-name">Edit type</p>
+            <p class="ly-name">Edit Name</p>
           </div>
 
           <form class="ly-form" name="form" ng-submit="updateType()" novalidate>
