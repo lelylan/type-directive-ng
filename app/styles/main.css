@@ -377,6 +377,15 @@ input:focus {
 }
 
 
+/*
+ * Edit modal
+ */
+
+.ly-type .ly-edit .ly-form .ly-detail {
+  margin: 1em 0 1.5em .8em;
+  border-top: none;
+}
+
 
 /*
  * Form
@@ -593,15 +602,15 @@ input:focus {
   color: rgb(233, 0, 0);
 }
 
-.ly-type .ly-settings .ly-actions {
+.ly-type .ly-form .ly-actions {
   margin-top: 1em;
 }
 
-.ly-type .ly-settings .ly-actions .ly-disabled-button {
+.ly-type .ly-form .ly-actions .ly-disabled-button {
   background-color: #ccc !important;
 }
 
-.ly-type .ly-settings .ly-actions .ly-disabled-button:hover {
+.ly-type .ly-form .ly-actions .ly-disabled-button:hover {
   background-color: #ccc !important;
   cursor: not-allowed;
 }

@@ -25,6 +25,8 @@ app.run(function($httpBackend, $timeout, Profile) {
   $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
   $httpBackend.whenPUT('http://api.lelylan.com/types/1').
     respond(function(method, url, data, headers) { return [200, updateType(data), {}]; });
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/types\//).respond(type)
+
 
   var updateType = function(data) {
     data = angular.fromJson(data);

@@ -45,7 +45,7 @@
       <!-- Side menu -->
 
       <div class="ly-menu">
-        <a href="#"><i class="fa fa-ellipsis-v"></i></a>
+        <a href="" ng-click="view.path='/menu'"><i class="fa fa-ellipsis-v"></i></a>
       </div>
     </div>
 
@@ -416,6 +416,103 @@
         </div>
       </div>
     </div>
+
+
+    <!-- ------------- -->
+    <!--  Menu choice  -->
+    <!-- ------------- -->
+
+    <div class="ly-connections ly-modal ly-animation-fast" ng-if="view.path=='/menu'">
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+
+        <div class="ly-connections-type">
+          <div class="ly-header">
+            <p class="ly-name">Menu</p>
+          </div>
+          <div class="ly-list">
+            <div class="ly-connection ly-properties" ng-click="view.path='/edit'">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Edit type name</span>
+            </div>
+            <div class="ly-connection ly-functions"  ng-click="view.path='/delete-type'">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Delete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ------------- -->
+    <!-- Edit type name -->
+    <!-- ------------- -->
+
+    <div class="ly-connections ly-edit ly-modal ly-animation-fast" ng-if="view.path=='/edit'">
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+        <div class="ly-connection-delete">
+          <div class="ly-header">
+            <p class="ly-name">Edit type</p>
+          </div>
+
+          <form class="ly-form" name="form" ng-submit="updateType()" novalidate>
+            <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': function.open}">
+              <div class="ly-detail">
+                <div class="ly-field ly-editable">
+                  <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>
+                  <input class="ly-value" type="text" name="name" ng-model="type.name" required></input>
+                </div>
+              </div>
+            </div>
+            <div class="ly-actions">
+              <button class="ly-button ly-update-button" ng-class="{'ly-disabled-button': !form.$valid}" ng-click="updateType(function)">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ------------- -->
+    <!--  Type Delete  -->
+    <!-- ------------- -->
+
+    <div class="ly-settings ly-delete ly-modal ly-animation-fast" ng-if="view.path=='/delete-type'">
+    <!--<div class="ly-settings ly-delete ly-modal ly-animation-fast">-->
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+        <div class="ly-connection-delete">
+          <div class="ly-header">
+            <p class="ly-name">Delete Type</p>
+          </div>
+          <form class="ly-form" ng-submit="deleteType(confirm)">
+            <div ng-class="{'ly-owner': isOwner()}">
+              <div>
+                <p class="ly-info">
+                Deleting your type is irreversible. If you have defined any
+                device with it, they will not work anymore. Enter the name
+                to confirm you want to permanently delete it.
+                </p>
+              </div>
+
+              <div class="ly-field ly-editable">
+                <input class="ly-value ly-name" type="text" autofocus placeholder="Type name" ng-model="confirm"></input>
+              </div>
+              <div class="ly-actions">
+                <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=type.name}">delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
 
   </div>
 </div>

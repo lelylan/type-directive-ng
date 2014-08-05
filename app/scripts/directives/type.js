@@ -38,7 +38,7 @@ angular.module('lelylan.directives.type.directive').directive('type',
     scope.view = { path: '/loading' }
 
     // active connection
-    scope.connection = 'category';
+    scope.connection = 'properties';
 
     // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
@@ -270,6 +270,36 @@ angular.module('lelylan.directives.type.directive').directive('type',
           scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
         });
     }
+
+
+    /*
+     * TYPE BEHAVIOUR
+     */
+
+    scope.updateType = function() {
+      scope.showDefault();
+      Type.update(scope.type.id, scope.type).
+        success(function(response) {
+          scope.type.name = response.name;
+        }).
+        error(function() {
+          scope.view.path = '/message';
+          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
+        });
+    }
+
+    scope.deleteType = function(confirm) {
+      if (scope.type.name == confirm) {
+        scope.view.path = '/message';
+        scope.message = { title: 'Type deleted', description: 'Reload the page to update the view' }
+        Type.delete(scope.type.id).
+          success(function(response) {
+            scope.type = response;
+            $rootScope.$broadcast('lelylan:type:delete', response);
+          });
+      }
+    }
+
 
     /*
      * CONNECTION DELETION BEHAVIOUR
