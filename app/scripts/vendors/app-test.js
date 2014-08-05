@@ -9,8 +9,9 @@ app.run(function($httpBackend, $timeout, Profile) {
   Profile.set({id: '1'});
 
   // stub requests
-  type = JSON.parse(readFixtures('type.json'));
-  property = JSON.parse(readFixtures('property.json'));
+  var type = JSON.parse(readFixtures('type.json'));
+  var property = JSON.parse(readFixtures('property.json'));
+  var _function = JSON.parse(readFixtures('function.json'));
 
   // mock requests
   $httpBackend.when('GET', /\/templates\//).passThrough();
@@ -35,7 +36,6 @@ app.run(function($httpBackend, $timeout, Profile) {
   var updateProperty = function(data) {
     data = angular.fromJson(data);
     var property = _.find(type.properties, function(property) { return property.id == data.id });
-    var property = type.properties[1];
     angular.extend(property, data);
     return data;
   }
@@ -44,5 +44,29 @@ app.run(function($httpBackend, $timeout, Profile) {
     var property = type.properties.splice(0, 1);
     return property;
   }
+
+
+  /*
+   * Function mocks
+   */
+
+  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/functions/).respond(_function);
+  $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/functions\//).
+    respond(function(method, url, data, headers) { return [200, updateFunction(data), {}]; });
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/properties\//).
+    respond(function(method, url, data, headers) { return [200, deleteFunction(data), {}]; });
+
+  var updateFunction = function(data) {
+    data = angular.fromJson(data);
+    var _function = _.find(type.functions, function(_function) { return _function.id == data.id });
+    angular.extend(_function, data);
+    return data;
+  }
+
+  var deleteFunction = function(data) {
+    var _function = type.functions.splice(0, 1);
+    return _function;
+  }
+
 
 });

@@ -69,6 +69,9 @@
       <div class="ly-connection ly-functions" ng-if="connection=='functions'">
         <span class="ly-name">Functions</span>
         <span class="ly-label">{{type.functions.length}}</span>
+        <ul class="ly-menu-add" ng-click="addFunction()" ng-if="isOwner()">
+          <li><a href="">Add</a></li>
+        </ul>
       </div>
 
       <div class="ly-connection ly-statuses" ng-if="connection=='statuses'">
@@ -92,7 +95,7 @@
     <!-- ------------ -->
 
     <div class="ly-properties" ng-show="connection=='properties'">
-      <div class="ly-property" ng-repeat="property in type.properties">
+      <div class="ly-property ly-item" ng-repeat="property in type.properties">
 
         <!-- Property form -->
 
@@ -140,13 +143,13 @@
                   <span>descriptive value</span>
                 </p>
                 <div ng-repeat="pair in property.accepted">
-                  <div class="ly-accepted">
+                  <div class="ly-multiple">
                     <a href="" ng-click="removeAccepted(property, $index, form)" ng-if="isOwner()"><i class="fa fa-minus"></i></a>
-                    <input class="ly-value ly-accepted-field" placeholder="key" type="text" ng-disabled="!isOwner()" ng-model="pair.key"></input>
-                    <input class="ly-value ly-accepted-field" placeholder="value" type="text" ng-disabled="!isOwner()" ng-model="pair.value"></input>
+                    <input class="ly-value ly-multiple-field ly-accepted-field" placeholder="key" type="text" ng-disabled="!isOwner()" ng-model="pair.key"></input>
+                    <input class="ly-value ly-multiple-field ly-accepted-field" placeholder="value" type="text" ng-disabled="!isOwner()" ng-model="pair.value"></input>
                   </div>
                 </div>
-                <div class="ly-accepted ly-accepted-add" ng-if="isOwner()">
+                <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
                   <a href="" ng-click="addAccepted(property)"><i class="fa fa-plus"></i><span>Add</span></a>
                 </div>
               </div>
@@ -185,46 +188,67 @@
     </div>
 
 
-    <!--[> --------- <]-->
-    <!--[> Functions <]-->
-    <!--[> --------- <]-->
+    <!-- --------- -->
+    <!-- Functions -->
+    <!-- --------- -->
 
-    <!--<div class="ly-functions" ng-show="connection=='functions'">-->
-      <!--<div class="ly-function" ng-repeat="function in type.functions">-->
+    <div class="ly-functions" ng-show="connection=='functions'">
+      <div class="ly-function ly-item" ng-repeat="function in type.functions">
 
-        <!--<form class="ly-form" name="form" ng-submit="updateFunction(function, form)" novalidate>-->
-          <!--<div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': function.open}">-->
-            <!--<a href="" ng-click="updateFunction(function, form)" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}" ng-if="isOwner()">-->
-              <!--<span>{{function.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>-->
-            <!--</a>-->
+        <form class="ly-form" name="form" ng-submit="updateFunction(function, form)" novalidate>
+          <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': function.open}">
+            <a href="" ng-click="updateFunction(function, form)" class="ly-save" ng-class="{'ly-save-enabled': form.$dirty && form.$valid}" ng-if="isOwner()">
+              <span>{{function.status || 'Save'}}</span> <i class="fa fa-check-circle" ></i>
+            </a>
 
-            <!--<a href="" ng-click="confirmDeleteConnection(function, $index, 'functions')" class="ly-delete" ng-if="isOwner()">-->
-              <!--<i class="fa fa-minus-circle" ></i>-->
-            <!--</a>-->
+            <a href="" ng-click="confirmDeleteConnection(function, $index, 'functions')" class="ly-delete" ng-if="isOwner()">
+              <i class="fa fa-minus-circle" ></i>
+            </a>
 
-            <!--<div class="ly-field ly-field-top" ng-click="toggle(function)">-->
-              <!--<i class="fa fa-angle-right" ng-if="!function.open"></i>-->
-              <!--<i class="fa fa-angle-down" ng-if="function.open"></i>-->
-              <!--<input class="ly-value ly-name-field" type="text" disabled ng-model="function.name"></input>-->
-            <!--</div>-->
+            <div class="ly-field ly-field-top" ng-click="toggle(function)">
+              <i class="fa fa-angle-right" ng-if="!function.open"></i>
+              <i class="fa fa-angle-down" ng-if="function.open"></i>
+              <input class="ly-value ly-name-field" type="text" disabled ng-model="function.name"></input>
+            </div>
 
-            <!--<div class="ly-detail" ng-show="function.open">-->
+            <div class="ly-detail" ng-show="function.open">
 
-              <!--<div class="ly-field ly-editable">-->
-                <!--<p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>-->
-                <!--<input class="ly-value" type="text" ng-disabled="!isOwner()" name="name" ng-model="function.name" required></input>-->
-              <!--</div>-->
+              <div class="ly-field ly-editable">
+                <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>
+                <input class="ly-value" type="text" ng-disabled="!isOwner()" name="name" ng-model="function.name" required></input>
+              </div>
 
-              <!--<div class="ly-field">-->
-                <!--<p class="ly-description">ID</p>-->
-                <!--<input class="ly-value ly-id-field" type="text" disabled ng-model="function.id"></input>-->
-              <!--</div>-->
+              <div class="ly-field">
+                <p class="ly-description">ID</p>
+                <input class="ly-value ly-id-field" type="text" disabled ng-model="function.id"></input>
+              </div>
 
-            <!--</div>-->
-          <!--</div>-->
-        <!--</form>-->
-      <!--</div>-->
-    <!--</div>-->
+              <div class="ly-field ly-editable">
+                <p class="ly-description">Updated properties</p>
+                <p class="ly-description">
+                  <span>property</span>
+                  <span>expected value</span>
+                </p>
+                <div ng-repeat="property in function.properties">
+                  <div class="ly-multiple">
+                    <a href="" ng-click="" ng-if="isOwner()"><i class="fa fa-minus"></i></a>
+                    <select class="ly-value"
+                      ng-disabled="!isOwner()"
+                      ng-model="property.id"
+                      ng-options="property.id as property.name for property in type.properties">
+                    </select>
+                    <input class="ly-value ly-multiple-field" placeholder="from user" type="text" ng-disabled="!isOwner()" ng-model="property.expected"></input>
+                  </div>
+                </div>
+                <div class="ly-multiple ly-multiple-add" ng-if="isOwner()">
+                  <a href="" ng-click=""><i class="fa fa-plus"></i><span>Add</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
 
 
     <!-- ----------------- -->

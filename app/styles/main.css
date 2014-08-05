@@ -321,6 +321,15 @@ input:focus {
 }
 
 
+/*
+ * Items list
+ */
+
+.ly-type .ly-item {
+  border-bottom: 1px solid #f8f8f8;
+  position: relative;
+}
+
 
 /*
  * Form
@@ -460,14 +469,10 @@ input:focus {
  * Properties
  */
 
-.ly-type .ly-property {
-  border-bottom: 1px solid #f8f8f8;
-  position: relative;
-}
 
 .ly-form .ly-field .ly-description span,
-.ly-form .ly-field .ly-accepted .ly-value {
-  width: 30%;
+.ly-form .ly-field .ly-multiple .ly-value {
+  width: 32%;
   margin-right: 1em;
 }
 
@@ -475,23 +480,24 @@ input:focus {
   display: inline-block;
   text-transform: capitalize;
   margin-right: 3em;
+  font-size: 1.1em;
 }
 
-.ly-form .ly-field .ly-accepted i {
+.ly-form .ly-field .ly-multiple i {
   font-size: .5em;
   padding-right: 1em;
 }
 
-.ly-form .ly-field .ly-accepted-field {
+.ly-form .ly-field .ly-multiple-field {
   margin-top: 0.2em;
   margin-bottom: 0.3em;
 }
 
-.ly-form .ly-field .ly-accepted-add {
+.ly-form .ly-field .ly-multiple-add {
   padding-top: .3em;
 }
 
-.ly-form .ly-field .ly-accepted span {
+.ly-form .ly-field .ly-multiple span {
   font-size: .9em;
 }
 

@@ -47,7 +47,7 @@ angular.module('lelylan.directives.type.directive').directive('type', [
     scope.view = { path: '/loading' }
 
     // active connection
-    scope.connection = 'properties';
+    scope.connection = 'functions';
 
     // template
     scope.template = attrs.deviceTemplate || 'views/templates/default.html';
@@ -97,6 +97,7 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           success(function(response) {
             scope.view.path = '/default';
             scope.type = response;
+            normalize(scope.type);
           }).
           error(function(data, status) {
             scope.view.path = '/message';
@@ -104,6 +105,20 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           });
       }
     });
+
+    var normalize = function(type) {
+      // set the property name into the function properties
+      _.each(scope.type.functions, function(_function) {
+        _.each(_function.properties, function(property) {
+          var result = _.find(scope.type.properties, function(_property) {
+            return _property.id == property.id
+          });
+          property.name = result.name;
+        })
+      });
+
+      console.log(scope.type.functions)
+    }
 
 
 
@@ -154,10 +169,8 @@ angular.module('lelylan.directives.type.directive').directive('type', [
         success(function(response) {
           response.open = true;
           scope.type.properties.unshift(response);
-          var params = {};
           var properties = _.pluck(scope.type.properties, 'id')
-          params[name] = properties;
-          Type.update(scope.type.id, params);
+          Type.update(scope.type.id, { properties: properties });
         });
     }
 
@@ -172,10 +185,39 @@ angular.module('lelylan.directives.type.directive').directive('type', [
         }).
         error(function(data, status) {
           scope.view.path = '/message';
-          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the property.' }
+          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
         });
     }
 
+
+    /*
+     * FUNCTION BEHAVIOUR
+     */
+
+    scope.addFunction = function() {
+      Function.create({name: 'New function'}).
+        success(function(response) {
+          response.open = true;
+          scope.type.functions.unshift(response);
+          var functions = _.pluck(scope.type.functions, 'id')
+          Type.update(scope.type.id, { functions: functions });
+        });
+    }
+
+    scope.updateFunction = function(_function, form) {
+      _function.status = 'Saving';
+      Function.update(_function.id, _function).
+        success(function(response) {
+          $timeout(function() {
+            _function.status = null;
+            form.$setPristine()
+          }, 500);
+        }).
+        error(function(data, status) {
+          scope.view.path = '/message';
+          scope.message = { title: 'Something went wrong', description: 'There was a problem while saving the resource.' }
+        });
+    }
 
 
     /*
@@ -202,6 +244,8 @@ angular.module('lelylan.directives.type.directive').directive('type', [
           success(function(response) {
             scope.type[name].splice(index, 1);
             var connections = _.pluck(scope.type[name], 'id');
+            var params = {};
+            params[name] = _.pluck(scope.type.properties, 'id');
             Type.update(scope.type.id, { properties: connections });
             scope.showDefault();
           });
