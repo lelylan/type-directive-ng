@@ -220,6 +220,9 @@ input:focus {
   color: #333;
 }
 
+.ly-type .ly-modal .ly-modal-window .ly-header .ly-name {
+  color: #333;
+}
 
 
 /*
@@ -234,6 +237,11 @@ input:focus {
 .ly-type .ly-header {
   padding: 0.6em;
   border-bottom: 1px solid #f8f8f8;
+}
+
+.ly-type .ly-header .ly-name {
+  font-size: 2em;
+  color: #fff;
 }
 
 .ly-type .ly-header .ly-form .ly-field {
@@ -273,7 +281,6 @@ input:focus {
 .ly-type .ly-header .ly-menu  a {
   color: #fff;
 }
-
 
 
 /*
