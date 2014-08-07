@@ -346,9 +346,10 @@ input:focus {
   color: #239cbb;
 }
 
-.ly-type .ly-connections i {
-  font-size: 1.5em;
-  margin-right: .3em;
+.ly-type .ly-connections .ly-description .ly-name {
+  color: #666;
+  font-size: .9em;
+  font-size: 1.2em;
 }
 
 
