@@ -11,7 +11,7 @@ angular.module('lelylan.directives.type', [
 
 angular.module('lelylan.directives.type.directive', [])
 
-angular.module('lelylan.directives.type.directive').directive('type',
+angular.module('lelylan.directives.type.directive').directive('lelylanType',
 
   function(
     $rootScope,
@@ -287,11 +287,12 @@ angular.module('lelylan.directives.type.directive').directive('type',
      * TYPE BEHAVIOUR
      */
 
-    scope.updateType = function() {
+    scope.updateType = function(form) {
       scope.showDefault();
       Type.update(scope.type.id, { name: scope.type.name } ).
         success(function(response) {
           scope.type.name = response.name;
+          form.$setPristine();
         }).
         error(function() {
           scope.view.path = '/message';

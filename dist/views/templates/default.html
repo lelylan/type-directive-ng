@@ -40,7 +40,16 @@
 
       <!-- Name -->
 
-      <p class="ly-name ly-type-name">{{type.name}}</p>
+      <form class="ly-form" name="form" ng-submit="updateType()" novalidate>
+        <div class="ly-fields" ng-class="{'ly-owner': isOwner()}">
+          <div class="ly-field ly-editable">
+            <input class="ly-value ly-name-field" type="text" ng-disabled="!isOwner()" ng-model="type.name"></input>
+          </div>
+        </div>
+        <a href="" class="save-name" ng-click="updateType(form)" ng-if="form.$dirty">
+          <i class="fa fa-check-circle"></i> <span class="text">Save</span>
+        </a>
+      </form>
 
       <!-- Side menu -->
 
@@ -87,7 +96,7 @@
       </div>
 
       <div class="ly-menu" ng-click="view.path='/connections'">
-        <a href="#"><i class="fa fa-angle-down"></i></a>
+        <a href=""><i class="fa fa-angle-down"></i></a>
       </div>
     </div>
 
@@ -435,47 +444,14 @@
             <p class="ly-name">Menu</p>
           </div>
           <div class="ly-list">
-            <div class="ly-connection ly-properties" ng-click="view.path='/edit'">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Edit name</span>
+            <div class="ly-connection ly-description">
+              <span class="ly-name">ID {{type.id}}</span>
             </div>
             <div class="ly-connection ly-functions"  ng-click="view.path='/delete-type'">
               <i class="fa fa-angle-right"></i>
               <span class="ly-name">Delete</span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- ------------- -->
-    <!-- Edit type name -->
-    <!-- ------------- -->
-
-    <div class="ly-connections ly-edit ly-modal ly-animation-fast" ng-if="view.path=='/edit'">
-      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
-      <div class="ly-modal-window">
-        <a class="ly-close" href="" ng-click="showDefault()">×</a>
-        <div class="ly-connection-delete">
-          <div class="ly-header">
-            <p class="ly-name">Edit Name</p>
-          </div>
-
-          <form class="ly-form" name="form" ng-submit="updateType()" novalidate>
-            <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': function.open}">
-              <div class="ly-detail">
-                <div class="ly-field ly-editable">
-                  <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>
-                  <input class="ly-value" type="text" name="name" ng-model="type.name" required></input>
-                </div>
-              </div>
-            </div>
-            <div class="ly-actions">
-              <button class="ly-button ly-update-button" ng-class="{'ly-disabled-button': !form.$valid}" ng-click="updateType(function)">Update</button>
-            </div>
-          </form>
         </div>
       </div>
     </div>
@@ -515,7 +491,6 @@
         </div>
       </div>
     </div>
-
 
   </div>
 </div>

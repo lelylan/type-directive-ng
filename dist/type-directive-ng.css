@@ -220,7 +220,13 @@ input:focus {
   color: #333;
 }
 
+.ly-type .ly-modal .ly-modal-window .ly-header .ly-name {
+  color: #333;
+}
 
+.ly-type .ly-modal .ly-modal-window .fa-angle-right {
+  font-size: 1.4em;
+}
 
 /*
  * Header
@@ -238,19 +244,54 @@ input:focus {
 
 .ly-type .ly-header .ly-name {
   font-size: 2em;
+  color: #fff;
+}
+
+.ly-type .ly-header .ly-form .ly-field {
+  padding: 0.25em 0;
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.ly-type  .ly-header .ly-owner .ly-editable .ly-value {
+  border-bottom: 1px dashed #fff;
+  color: #fff;
+  width: 50%;
+}
+
+.ly-type .ly-header .ly-form .ly-field .ly-value {
+  color: #fff;
 }
 
 .ly-type .ly-header .ly-menu {
   font-size: 2em;
   position: absolute;
   top: 0.35em;
-  right: 0.35em;
+  right: -.1em;
+}
+
+.ly-type .ly-header .ly-menu a {
+  padding: 0 .5em;
+}
+
+.ly-type .ly-header .save-name {
+  position: absolute;
+  top: .65em;
+  right: 1.8em;
+  font-size: 1.3em;
+  background-color: #fff;
+  padding: .1em .3em;
+  border-radius: 3px;
+  border: 1px solid #239cbb;
+}
+
+.ly-type .ly-header .save-name .text {
+  font-size: .8em;
 }
 
 .ly-type .ly-header .ly-menu  a {
   color: #fff;
 }
-
 
 
 /*
@@ -316,9 +357,10 @@ input:focus {
   color: #239cbb;
 }
 
-.ly-type .ly-connections i {
-  font-size: 1.5em;
-  margin-right: .3em;
+.ly-type .ly-connections .ly-description .ly-name {
+  color: #666;
+  font-size: .9em;
+  font-size: 1.2em;
 }
 
 

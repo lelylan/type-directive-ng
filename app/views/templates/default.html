@@ -369,23 +369,40 @@
           <div class="ly-header">
             <p class="ly-name">Delete</p>
           </div>
-          <form class="ly-form" ng-submit="deleteConnection(confirm)">
-            <div ng-class="{'ly-owner': isOwner()}">
-              <div>
-                <p class="ly-info">
-                Deleting one of your {{deleting.name}} is irreversible.
-                Enter the name to confirm you want to permanently delete it.
-                </p>
-              </div>
 
-              <div class="ly-field ly-editable">
-                <input class="ly-value ly-name" type="text" autofocus placeholder="Property name" ng-model="confirm"></input>
+          <div class="ly-blocking" ng-show="blocking.functions.length!=0 || blocking.statuses.length!=0">
+            <p class="ly-info">You can't delete this resource because it is used from:</p>
+            <ul class="ly-list-disc">
+              <li ng-repeat="function in blocking.functions">
+              {{function}} (function)
+              </li>
+            </ul>
+            <ul class="ly-list-disc">
+              <li ng-repeat="status in blocking.statuses">
+              {{status}} (status)
+              </li>
+            </ul>
+          </div>
+
+          <div ng-show="blocking.functions.length==0 && blocking.statuses.length==0">
+            <form class="ly-form" ng-submit="deleteConnection(confirm)">
+              <div ng-class="{'ly-owner': isOwner()}">
+                <div>
+                  <p class="ly-info">
+                  Deleting one of your {{deleting.name}} is irreversible.
+                  Enter the name to confirm you want to permanently delete it.
+                  </p>
+                </div>
+
+                <div class="ly-field ly-editable">
+                  <input class="ly-value ly-name" type="text" autofocus placeholder="Property name" ng-model="confirm"></input>
+                </div>
+                <div class="ly-actions">
+                  <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=deleting.connection.name}">delete</button>
+                </div>
               </div>
-              <div class="ly-actions">
-                <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=deleting.connection.name}">delete</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -447,47 +464,11 @@
             <div class="ly-connection ly-description">
               <span class="ly-name">ID {{type.id}}</span>
             </div>
-            <div class="ly-connection ly-properties" ng-click="view.path='/edit'">
-              <i class="fa fa-angle-right"></i>
-              <span class="ly-name">Edit name</span>
-            </div>
             <div class="ly-connection ly-functions"  ng-click="view.path='/delete-type'">
               <i class="fa fa-angle-right"></i>
               <span class="ly-name">Delete</span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- ------------- -->
-    <!-- Edit type name -->
-    <!-- ------------- -->
-
-    <div class="ly-connections ly-edit ly-modal ly-animation-fast" ng-if="view.path=='/edit'">
-      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
-      <div class="ly-modal-window">
-        <a class="ly-close" href="" ng-click="showDefault()">×</a>
-        <div class="ly-connection-delete">
-          <div class="ly-header">
-            <p class="ly-name">Edit Name</p>
-          </div>
-
-          <form class="ly-form" name="form" ng-submit="updateType()" novalidate>
-            <div class="ly-fields" ng-class="{'ly-owner': isOwner(), 'ly-open-connection': function.open}">
-              <div class="ly-detail">
-                <div class="ly-field ly-editable">
-                  <p class="ly-description" ng-class="{'ly-error': form.name.$error.required}">Name</p>
-                  <input class="ly-value" type="text" name="name" ng-model="type.name" required></input>
-                </div>
-              </div>
-            </div>
-            <div class="ly-actions">
-              <button class="ly-button ly-update-button" ng-class="{'ly-disabled-button': !form.$valid}" ng-click="updateType(function)">Update</button>
-            </div>
-          </form>
         </div>
       </div>
     </div>
@@ -527,7 +508,6 @@
         </div>
       </div>
     </div>
-
 
   </div>
 </div>

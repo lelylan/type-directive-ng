@@ -309,12 +309,49 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
      */
 
     scope.confirmDeleteConnection = function(connection, index, name) {
+      scope.blocking = getBlocking(connection, name);
+      console.log(scope.blocking);
+
       scope.deleting = { connection: connection, index: index, name: name };
       if (scope.deleting.name == 'properties') { scope.deleting.klass = Property }
       if (scope.deleting.name == 'functions')  { scope.deleting.klass = Function }
       if (scope.deleting.name == 'statuses')   { scope.deleting.klass = Status }
       scope.view.path = '/delete' ;
     }
+
+    // check if the connection is used from other connections
+    // * check if a property is used from functions or statuses
+    // * check if a function is used from statuse
+    var getBlocking = function(connection, name) {
+      var resources = {
+        functions: [],
+        statuses: []
+      }
+
+      if (name == 'properties') {
+        _.each(scope.type.functions, function(_function) {
+          var ids = _.pluck(_function.properties, 'id');
+          if (_.contains(ids, connection.id)) { resources.functions.push(_function.name) }
+        });
+      }
+
+      if (name == 'properties') {
+        _.each(scope.type.statuses, function(status) {
+          var ids = _.pluck(status.properties, 'id');
+          if (_.contains(ids, connection.id)) { resources.statuses.push(status.name) }
+        });
+      }
+
+      if (name == 'functions') {
+        _.each(scope.type.statuses, function(status) {
+          console.log(status.id, connection.id)
+          if (status.function.id == connection.id) { resources.statuses.push(status.name) }
+        });
+      }
+
+      console.log(resources);
+      return resources;
+    };
 
     scope.deleteConnection = function(confirm) {
       if (scope.deleting.connection.name == confirm) {
@@ -334,7 +371,7 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
             scope.showDefault();
           });
       }
-    }
+    };
 
 
   }
