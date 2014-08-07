@@ -464,10 +464,41 @@
             <div class="ly-connection ly-description">
               <span class="ly-name">ID {{type.id}}</span>
             </div>
-            <div class="ly-connection ly-functions"  ng-click="view.path='/delete-type'">
+            <div class="ly-connection"  ng-click="view.path='/embed'">
+              <i class="fa fa-angle-right"></i>
+              <span class="ly-name">Embed</span>
+            </div>
+            <div class="ly-connection"  ng-click="view.path='/delete-type'">
               <i class="fa fa-angle-right"></i>
               <span class="ly-name">Delete</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ------------ -->
+    <!--  Embed type  -->
+    <!-- ------------ -->
+
+    <div class="ly-settings ly-embed ly-modal ly-animation-fast" ng-if="view.path=='/embed'">
+      <div class="ly-modal-backdrop" ng-click="showDefault()"></div>
+      <div class="ly-modal-window">
+        <a class="ly-close" href="" ng-click="showDefault()">×</a>
+        <div class="ly-connection-delete">
+          <div class="ly-header">
+            <p class="ly-name">Embed</p>
+          </div>
+          <div class="code">
+            <code><xmp><div ng-app="type-directive" style="width:360px;">
+  <lelylan-type type-template="https://s3.amazonaws.com/lelylan/directives/type/default.html" type-id="{{type.id}}"></lelylan-type>
+</div>
+<link rel="stylesheet" href="../dist/type-directive-ng-embed.css">
+<script src="../dist/type-directive-ng-embed.js"></script>
+<script>
+  angular.module('type-directive', ['lelylan.directives.type']);
+</script></xmp></code>
           </div>
         </div>
       </div>
@@ -507,6 +538,10 @@
           </form>
         </div>
       </div>
+    </div>
+
+    <div class="ly-footer">
+      <p class="ly-content">Powered by <a href="http://lelylan.com" target="_blank">Lelylan</a></p>
     </div>
 
   </div>

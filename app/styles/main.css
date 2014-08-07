@@ -703,6 +703,14 @@ input:focus {
   padding-bottom: .3em;
 }
 
+.ly-type .ly-footer .ly-content {
+  padding: 1em .5em;
+  text-align: right;
+  font-size: .8em;
+  background-color: #f8f8f8;
+  border-top: 1px solid #eee;
+}
+
 
 /*
  * Elements animation

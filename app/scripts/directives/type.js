@@ -40,7 +40,7 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
     scope.connection = 'properties';
 
     // template
-    scope.template = attrs.deviceTemplate || 'views/templates/default.html';
+    scope.template = attrs.typeTemplate || 'views/templates/default.html';
 
     // property types
     scope.config = {

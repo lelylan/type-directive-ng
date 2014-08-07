@@ -49,7 +49,7 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
     scope.connection = 'properties';
 
     // template
-    scope.template = attrs.deviceTemplate || 'bower_components/type-directive-ng/dist/views/templates/default.html';
+    scope.template = attrs.typeTemplate || 'bower_components/type-directive-ng/dist/views/templates/default.html';
 
     // property types
     scope.config = {
