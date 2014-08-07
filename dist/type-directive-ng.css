@@ -685,6 +685,23 @@ input:focus {
   cursor: not-allowed;
 }
 
+.ly-type .ly-delete .ly-blocking {
+  padding-bottom: 1em;
+}
+
+.ly-type .ly-delete .ly-blocking .ly-info {
+  padding-bottom: 1em;
+}
+
+.ly-type .ly-delete .ly-blocking .ly-list-disc {
+  padding-left: 2em;
+}
+
+.ly-type .ly-delete .ly-blocking .ly-list-disc li {
+  list-style-type: disc;
+  color: #666;
+  padding-bottom: .3em;
+}
 
 
 /*

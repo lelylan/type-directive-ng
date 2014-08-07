@@ -369,23 +369,40 @@
           <div class="ly-header">
             <p class="ly-name">Delete</p>
           </div>
-          <form class="ly-form" ng-submit="deleteConnection(confirm)">
-            <div ng-class="{'ly-owner': isOwner()}">
-              <div>
-                <p class="ly-info">
-                Deleting one of your {{deleting.name}} is irreversible.
-                Enter the name to confirm you want to permanently delete it.
-                </p>
-              </div>
 
-              <div class="ly-field ly-editable">
-                <input class="ly-value ly-name" type="text" autofocus placeholder="Property name" ng-model="confirm"></input>
+          <div class="ly-blocking" ng-show="blocking.functions.length!=0 || blocking.statuses.length!=0">
+            <p class="ly-info">You can't delete this resource because it is used from:</p>
+            <ul class="ly-list-disc">
+              <li ng-repeat="function in blocking.functions">
+              {{function}} (function)
+              </li>
+            </ul>
+            <ul class="ly-list-disc">
+              <li ng-repeat="status in blocking.statuses">
+              {{status}} (status)
+              </li>
+            </ul>
+          </div>
+
+          <div ng-show="blocking.functions.length==0 && blocking.statuses.length==0">
+            <form class="ly-form" ng-submit="deleteConnection(confirm)">
+              <div ng-class="{'ly-owner': isOwner()}">
+                <div>
+                  <p class="ly-info">
+                  Deleting one of your {{deleting.name}} is irreversible.
+                  Enter the name to confirm you want to permanently delete it.
+                  </p>
+                </div>
+
+                <div class="ly-field ly-editable">
+                  <input class="ly-value ly-name" type="text" autofocus placeholder="Property name" ng-model="confirm"></input>
+                </div>
+                <div class="ly-actions">
+                  <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=deleting.connection.name}">delete</button>
+                </div>
               </div>
-              <div class="ly-actions">
-                <button class="ly-button ly-delete-button" ng-class="{'ly-disabled-button': confirm!=deleting.connection.name}">delete</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
