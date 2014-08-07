@@ -40,7 +40,16 @@
 
       <!-- Name -->
 
-      <p class="ly-name ly-type-name">{{type.name}}</p>
+      <form class="ly-form" name="form" ng-submit="updateType()" novalidate>
+        <div class="ly-fields" ng-class="{'ly-owner': isOwner()}">
+          <div class="ly-field ly-editable">
+            <input class="ly-value ly-name-field" type="text" ng-disabled="!isOwner()" ng-model="type.name"></input>
+          </div>
+        </div>
+        <a href="" class="save-name" ng-click="updateType(form)" ng-if="form.$dirty">
+          <i class="fa fa-check-circle"></i> <span class="text">Save</span>
+        </a>
+      </form>
 
       <!-- Side menu -->
 

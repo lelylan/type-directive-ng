@@ -236,16 +236,38 @@ input:focus {
   border-bottom: 1px solid #f8f8f8;
 }
 
-.ly-type .ly-header .ly-name {
-  font-size: 2em;
+.ly-type .ly-header .ly-form .ly-field {
+  padding: 0.25em 0;
+  font-size: 1.5em;
   color: #fff;
+}
+
+.ly-type  .ly-header .ly-owner .ly-editable .ly-value {
+  border-bottom: 1px dashed #fff;
+  color: #fff;
+  width: 50%;
 }
 
 .ly-type .ly-header .ly-menu {
   font-size: 2em;
   position: absolute;
   top: 0.35em;
-  right: 0.35em;
+  right: -.1em;
+  padding: 0 .5em;
+}
+
+.ly-type .ly-header .save-name {
+  position: absolute;
+  top: .7em;
+  right: 1.8em;
+  font-size: 1.3em;
+  background-color: #fff;
+  padding: .1em .3em;
+  border-radius: 2px;
+}
+
+.ly-type .ly-header .save-name .text {
+  font-size: .8em;
 }
 
 .ly-type .ly-header .ly-menu  a {
