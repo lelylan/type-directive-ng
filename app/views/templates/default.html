@@ -108,6 +108,14 @@
     <!-- ------------ -->
 
     <div class="ly-properties" ng-show="connection=='properties'">
+
+      <div class="ly-no-connections" ng-show="type.properties.length==0">
+        <p>
+        There are no properties for this type.<br>
+          <a href="" ng-click="addProperty()">Add</a> your first one to get started.
+        </p>
+      </div>
+
       <div class="ly-property ly-item" ng-repeat="property in type.properties">
 
         <!-- Property form -->
@@ -209,6 +217,14 @@
     <!-- --------- -->
 
     <div class="ly-functions" ng-show="connection=='functions'">
+
+      <div class="ly-no-connections" ng-show="type.functions.length==0">
+        <p>
+        There are no functions for this type.<br>
+        <a href="" ng-click="addFunction()">Add</a> your first one to get started.
+        </p>
+      </div>
+
       <div class="ly-function ly-item" ng-repeat="function in type.functions">
 
         <form class="ly-form" name="form" ng-submit="updateFunction(function, form)" novalidate>
@@ -273,6 +289,14 @@
     <!-- -------- -->
 
     <div class="ly-statuses" ng-show="connection=='statuses'">
+
+      <div class="ly-no-connections" ng-show="type.statuses.length==0">
+        <p>
+        There are no statuses for this type.<br>
+        <a href="" ng-click="addStatus()">Add</a> your first one to get started.
+        </p>
+      </div>
+
       <div class="ly-status ly-item" ng-repeat="status in type.statuses">
 
         <form class="ly-form" name="form" ng-submit="updateStatus(status, form)" novalidate>

@@ -343,6 +343,15 @@ input:focus {
   text-decoration: none;
 }
 
+.ly-type .ly-no-connections {
+  padding: 1.2em .7em;
+}
+
+.ly-type .ly-no-connections p {
+  font-size: 1.1em;
+  padding-bottom: .5em;
+}
+
 
 
 /*
