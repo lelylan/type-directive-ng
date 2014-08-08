@@ -54,8 +54,7 @@
       <!-- Side menu -->
 
       <div class="ly-menu">
-        <a href="" ng-if="isOwner()" ng-click="view.path='/menu'"><i class="fa fa-ellipsis-v"></i></a>
-        <a href="" ng-if="!isOwner()" class="ly-embed-action" ng-click="view.path='/embed'"><i class="fa fa-code"></i></a>
+        <a href="" ng-click="view.path='/menu'"><i class="fa fa-ellipsis-v"></i></a>
       </div>
 
     </div>
@@ -470,7 +469,7 @@
               <i class="fa fa-angle-right"></i>
               <span class="ly-name">Embed</span>
             </div>
-            <div class="ly-connection"  ng-click="view.path='/delete-type'">
+            <div class="ly-connection" ng-if="isOwner()" ng-click="view.path='/delete-type'">
               <i class="fa fa-angle-right"></i>
               <span class="ly-name">Delete</span>
             </div>
