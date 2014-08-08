@@ -343,6 +343,15 @@ input:focus {
   text-decoration: none;
 }
 
+.ly-type .ly-no-connections {
+  padding: 1.2em .7em;
+}
+
+.ly-type .ly-no-connections p {
+  font-size: 1.1em;
+  padding-bottom: .5em;
+}
+
 
 
 /*
@@ -734,18 +743,19 @@ input:focus {
   overflow: hidden;
   background-color: #f8f8f8;
   border: 1px solid #eee;
-  padding: .2em;
+  padding: .4em;
 }
 
 .ly-type .ly-embed .ly-button {
+  margin-top: .5em;
   font-size: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 1.3em;
 }
 
 .ly-type .ly-embed .ly-info {
   color: #333;
   font-size: 1em;
-  padding: 0.8em;
+  padding: 0.5em .8em;
   padding-bottom: 1.3em;
 }
 
