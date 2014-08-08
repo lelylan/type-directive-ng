@@ -293,11 +293,15 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
      */
 
     scope.updateType = function(form) {
+      scope.type.status = 'Saving';
       scope.showDefault();
       Type.update(scope.type.id, { name: scope.type.name } ).
         success(function(response) {
           scope.type.name = response.name;
-          form.$setPristine();
+          $timeout(function() {
+            form.$setPristine();
+            scope.type.status = null;
+          }, 500)
         }).
         error(function() {
           scope.view.path = '/message';
