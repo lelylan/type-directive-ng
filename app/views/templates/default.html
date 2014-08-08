@@ -268,8 +268,8 @@
                       ng-model="property.id"
                       ng-options="property.id as property.name for property in type.properties">
                     </select>
-                    <input class="ly-value ly-multiple-field" type="text" ng-if="isOwner()" placeholder="from user" ng-disabled="!isOwner()" ng-model="property.expected"></input>
-                    <input class="ly-value ly-multiple-field" type="text" ng-if="!isOwner()" disabled value="from user"></input>
+                    <input class="ly-value ly-multiple-field" type="text" ng-if="isOwner() || property.expected" placeholder="from user" ng-disabled="!isOwner()" ng-model="property.expected"></input>
+                    <input class="ly-value ly-multiple-field" type="text" ng-if="!isOwner() && !property.expected" disabled value="from user"></input>
                     <a href="" ng-click="removeFunctionProperty(function, $index, form)"  ng-if="isOwner()"><i class="fa fa-minus-circle ly-remove-multiple"></i></a>
                   </div>
                 </div>
