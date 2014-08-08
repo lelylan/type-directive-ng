@@ -40,14 +40,14 @@
 
       <!-- Name -->
 
-      <form class="ly-form" name="form" ng-submit="updateType()" novalidate>
+      <form class="ly-form" name="form" ng-submit="updateType(form)" novalidate>
         <div class="ly-fields" ng-class="{'ly-owner': isOwner()}">
           <div class="ly-field ly-editable">
             <input class="ly-value ly-name-field" type="text" ng-disabled="!isOwner()" ng-model="type.name"></input>
           </div>
         </div>
-        <a href="" class="save-name" ng-click="updateType(form)" ng-if="form.$dirty">
-          <i class="fa fa-check-circle"></i> <span class="text">Save</span>
+        <a href="" class="save-name ly-animation-fast" ng-click="updateType(form)" ng-if="form.$dirty">
+          <i class="fa fa-check-circle"></i> <span class="text">{{ type.status || 'Save' }}</span>
         </a>
       </form>
 
