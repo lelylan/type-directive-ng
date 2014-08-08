@@ -53,9 +53,11 @@
 
       <!-- Side menu -->
 
-      <div class="ly-menu" ng-if="isOwner()">
-        <a href="" ng-click="view.path='/menu'"><i class="fa fa-ellipsis-v"></i></a>
+      <div class="ly-menu">
+        <a href="" ng-if="isOwner()" ng-click="view.path='/menu'"><i class="fa fa-ellipsis-v"></i></a>
+        <a href="" ng-if="!isOwner()" class="ly-embed-action" ng-click="view.path='/embed'"><i class="fa fa-code"></i></a>
       </div>
+
     </div>
 
 
@@ -490,16 +492,26 @@
           <div class="ly-header">
             <p class="ly-name">Embed</p>
           </div>
-          <div class="code">
-            <code><xmp><div ng-app="type-directive" style="width:360px;">
-  <lelylan-type type-template="https://s3.amazonaws.com/lelylan/directives/type/default.html" type-id="{{type.id}}"></lelylan-type>
+          <div class="ly-code ly-form">
+
+            <div class="ly-action">
+              <button type="button" class="ly-button" clip-copy="copyEmbed()" ng-click="copyEmbed()">{{messageEmbed || 'Copy to clipboard'}}</button>
+            </div>
+
+            <code><xmp id="embed"><div ng-app="type-directive" style="width:360px;">
+  <lelylan-type type-template="https://s3.amazonaws.com/lelylan/directives/type/templates/default.html" type-id="{{type.id}}"></lelylan-type>
 </div>
-<link rel="stylesheet" href="../dist/type-directive-ng-embed.css">
-<script src="../dist/type-directive-ng-embed.js"></script>
+<link rel="stylesheet" href="https://s3.amazonaws.com/lelylan/directives/type/type-directive-ng-embed.css">
+<script src="https://s3.amazonaws.com/lelylan/directives/type/type-directive-ng-embed.js"></script>
 <script>
   angular.module('type-directive', ['lelylan.directives.type']);
 </script></xmp></code>
           </div>
+            <div class="ly-info">
+              This is a beta feature. It could not work and it's not optimized to be loaded fast.
+              If you are into AngularJS and you like what we are doing
+              <a href="https://github.com/lelylan/type-directive-ng" target="_blank">Help us</a> on making it better.
+            </div>
         </div>
       </div>
     </div>

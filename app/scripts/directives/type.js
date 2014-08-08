@@ -310,7 +310,6 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
 
     scope.confirmDeleteConnection = function(connection, index, name) {
       scope.blocking = getBlocking(connection, name);
-      console.log(scope.blocking);
 
       scope.deleting = { connection: connection, index: index, name: name };
       if (scope.deleting.name == 'properties') { scope.deleting.klass = Property }
@@ -344,12 +343,10 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
 
       if (name == 'functions') {
         _.each(scope.type.statuses, function(status) {
-          console.log(status.id, connection.id)
           if (status.function.id == connection.id) { resources.statuses.push(status.name) }
         });
       }
 
-      console.log(resources);
       return resources;
     };
 
@@ -373,6 +370,12 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
       }
     };
 
+    // copy embedded code
+    scope.copyEmbed = function() {
+      scope.messageEmbed = 'Copied'
+      $timeout(function() { scope.messageEmbed = null; }, 2000);
+      return document.getElementById('embed').innerHTML;
+    };
 
   }
 

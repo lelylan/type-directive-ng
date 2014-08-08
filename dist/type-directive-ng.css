@@ -266,7 +266,7 @@ input:focus {
 .ly-type .ly-header .ly-menu {
   font-size: 2em;
   position: absolute;
-  top: 0.35em;
+  top: 0.3em;
   right: -.1em;
 }
 
@@ -702,6 +702,53 @@ input:focus {
   color: #666;
   padding-bottom: .3em;
 }
+
+
+
+/*
+ * Footer
+ */
+
+.ly-type .ly-footer .ly-content {
+  padding: 1em .5em;
+  text-align: right;
+  font-size: .8em;
+  background-color: #f8f8f8;
+}
+
+
+/*
+ * Embed code
+ */
+
+.ly-type .ly-header .ly-menu .ly-embed-action {
+  padding-right: .3em;
+  font-size: .8em;
+}
+
+.ly-type .ly-embed .ly-code {
+  padding: .7em;
+}
+
+.ly-type .ly-embed .ly-code xmp {
+  overflow: hidden;
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  padding: .2em;
+}
+
+.ly-type .ly-embed .ly-button {
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+.ly-type .ly-embed .ly-info {
+  color: #333;
+  font-size: 1em;
+  padding: 0.8em;
+  padding-bottom: 1.3em;
+}
+
 
 
 /*
