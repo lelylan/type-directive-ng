@@ -267,11 +267,11 @@ input:focus {
   font-size: 2em;
   position: absolute;
   top: 0.35em;
-  right: -.1em;
+  right: 0;
 }
 
 .ly-type .ly-header .ly-menu a {
-  padding: 0 .5em;
+  padding: 0 .4em;
 }
 
 .ly-type .ly-header .save-name {
