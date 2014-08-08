@@ -1,56 +1,36 @@
-# Type Directive
+# AngularJS directive for Device Directive
 
-AngularJS Type directive makes it easy to explore a device type structure (e.g. lights, locks,
-thermostats) from desktop, tablet, and mobile. To device type structure comes from
-[Lelylan](http://lelylan.com), a simple, open and robust REST API for the Connected Home.
+Source code for the AngularJS directive for for Lelylan Device Directive [website](http://lelylan.github.com/device-directive-ng).
+[![device-directive-ng](http://i.imgur.com/dLN4isF.png)](http://lelylan.github.com/device-directive-ng)
 
-# Documentation
-
-[![type-directive-ng](http://i.imgur.com/JrFww5o.png)](http://lelylan.github.io/type-directive-ng/)
 
 ## Contributing
 
 Fork the repo on github and send a pull requests with topic branches.
 
-### Setup
-
-* Fork and clone the repository
-* Run `npm install && bower install`
-
-### Creating your own distribution
-
-* Run `grunt build`
-
-The new distribution files will be created in the `dist/` folder.
-
-### Creating the embedded JS and CSS (for lelylan team only)
-
-To create the JS, CSS and template to enable the widget embedding
-check out this [issue](https://github.com/lelylan/type-directive-ng/issues/23).
-
-### Coding guidelines
-
-Follow [github](https://github.com/styleguide/) guidelines.
 
 ### Feedback
 
-Use the [issue tracker](http://github.com/lelylan/type-directive-ng/issues) for bugs.
-[Mail](mailto:dev@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea that can improve the project.
+Use the [issue tracker](http://github.com/lelylan/device-directive-ng/issues) for bugs.
+[Mail](mailto:touch@lelylan.com) or [Tweet](http://twitter.com/lelylan) us for any idea
+that can improve the project.
+
+## Links
+
+* [GIT Repository](http://github.com/lelylan/device-directive-ng)
+* [Lelylan Device API](http://dev.lelylan.com/developers#devices-api)
+* [Lelylan](http://lelylan.com)
 
 ## Authors
 
 [Andrea Reginato](http://twitter.com/andreareginato)
+[Lelylan Dev Team](http://twitter.com/lelylan)
 
 ## Contributors
 
-Special thanks to all [contributors](https://github.com/lelylan/type-directive-ng/contributors)
+Special thanks to all [contributors](https://github.com/lelylan/device-directive-ng/contributors)
 for submitting patches.
 
-## Changelog
+## License
 
-See [CHANGELOG](https://github.com/lelylan/type-directive-ng/blob/master/CHANGELOG.md)
-
-## Copyright
-
-Copyright (c) 2014 [Lelylan](http://lelylan.com).
-See [LICENSE](https://github.com/lelylan/type-directive-ng/blob/master/LICENSE.md) for details.
+See [license](https://github.com/lelylan/device-directive-ng/blob/master/LICENSE.md).
