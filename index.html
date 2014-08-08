@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>device-ng | AngularJS directive to control your devices, on web and mobile</title>
+    <title>type-directive-ng | AngularJS directive to explore your device structures, on web and mobile</title>
     <link rel="stylesheet" href="public/styles/style.css">
     <link rel="stylesheet" href="public/icons/css/slate.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Italiana" type='text/css'>
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/device-directive-ng/dist/device-directive-ng.css">
+    <link rel="stylesheet" href="bower_components/type-directive-ng/dist/type-directive-ng.css">
     <link rel="stylesheet" href="public/views/templates/switch/switch.css" />
     <link rel="stylesheet" href="public/views/templates/black/black.css" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
   </head>
+
   <body ng-app="app">
 
     <section id="top">
@@ -37,49 +38,70 @@
     </div>
 
     <div id="heading">
-      <div id="logo">&lt;device&gt;</div>
+      <div id="logo">&lt;lelylan-type&gt;</div>
       <div id="tagline">
-      Built atop AngularJS, the Device directive makes it easier<br>
-      and faster to create a complete application across desktop,<br>
-      mobile, and beyond for the Connected Home.
+      The new HTML5 tag built atop <a href="https://angularjs.org/">AngularJS</a>
+      and <a href="http://lelylan.com">Lelylan</a><br>
+      that makes it easier to explore and create the structure<br>
+      of the devices that will compose the Connected Home.
       </div>
-      <div class="device center">
-        <device device-id="1"></device>
+      <div class="type center">
+        <lelylan-type type-id="2"></lelylan-type>
       <div>
     </div>
     </section>
 
     <section>
     <div class="content">
+
       <h1 id="introduction">Introduction</h1>
 
-      <h2>Control anything</h2>
+
+      <h2>What</h2>
 
       <p>
-      The device directive gives you a ready to use solution to control any device.
-      To make this possible it uses <a href="http://lelylan.com/" target="_blank">Lelylan</a>,
-      a simple, open and robust REST API for the Connected Home.
+        With the type directive you can easily create and explore the structure of any device
+        like lights, thermostats, locks and more in a simple and accessible way.
       </p>
 
-      <img src="public/images/intuitive.png" style="border:none"></img>
 
-      <h2>Mobile first</h2>
+      <h2>Why</h2>
 
       <p>
-      We created a solution that works great on tablets and mobile phones, including
-      iPhones, iPads, and Android devices.
+        We need a clear way to define how devices work in order to explore the real potential of
+        the Connected Home. Right now we have dozens of standards: Wifi, Zigbee, Ethernet, Konnex,
+        X10 to name some. All those differences does not make it easier for devices to communicate.
       </p>
 
-      <img src="public/images/mobile-first.png" style="border:none"></img>
 
-      <h2>Fully customizable</h2>
+      <h2>How</h2>
 
       <p>
-      The device directive comes to life with customization in mind. It offers you default template
-      but if it doesn't work for your needs personalize it with custom CSS and HTML.
+        The proposed solution is the definition of a device type, which defines a device structure in a unique
+        way through the combination of three key elements.
       </p>
 
-      <img src="public/images/customizable.png" style="border:none"></img>
+      <ul>
+      <li>Properties - what varies during time in a device.</li>
+      <li>Functions - what a device can do.</li>
+      <li>Statuses - what a device is in a specific moment.</li>
+      </ul>
+
+
+      <h2>Where</h2>
+
+      <p>
+        Right now the type directive is used from lelylan in the <a html="">dashboard</a> to easily
+        start to control and monitor any device in your house. We'll release soon a dedicated dashboard
+        completely dedicated to the definition and discussion of device types.
+      </p>
+
+      <h2>Call for action</h2>
+
+      <p>
+      If you like this project and you want to share your ideas on what we are doing,
+      let the <a href="http://twitter.com/lelylan">@lelylan</a> team know.
+      </p>
 
     </div>
     </section>
@@ -92,18 +114,18 @@
       <h2>Installation</h2>
 
       <p>
-      Install the device directive using <a href="http://bower.io/" target="_blank">Bower</a>.
+      Install the type directive using <a href="http://bower.io/" target="_blank">Bower</a>.
       </p>
 
-      <pre><code>$ bower install device-directive-ng --save</code></pre>
+      <pre><code>$ bower install type-directive-ng --save</code></pre>
 
       <h2>Basic Example</h2>
 
       <p>
-      Use the <code>&lt;device&gt;</code> directive and set the desired device ID.
+      Use the <code>&lt;lelylan-type&gt;</code> directive and set the desired type ID.
       </p>
 
-      <pre><code><xmp><device device-id="DEVICE_ID"></device></xmp></code></pre>
+      <pre><code><xmp><lelylan-type type-id="TYPE_ID"></lelylan-type></xmp></code></pre>
 
     </div>
     </section>
@@ -115,14 +137,9 @@
 
       <h1 id="howto">Create your first app</h1>
       <p>
-      In this section you will learn how to use the device directive to monitor and control
-      all the devices you have defined in Lelylan.
+      In this section you will learn how to use the type directive to explore the
+      most popular types defined in Lelylan.
       </p>
-
-      <!--<p class="btn-group">-->
-      <!--<a href="" class="btn" target="_blank">View Demo</a>-->
-      <!--<a href="" class="btn" target="_blank">Download Source</a>-->
-      <!--</p>-->
 
 
       <h2 id="setup">Setup</h2>
@@ -193,16 +210,16 @@
       </p>
 
 
-      <h2>Install the device directive</h2>
+      <h2>Install the type directive</h2>
 
       <p>
-      Install the device directive using <a href="http://bower.io/">Bower</a>.
+      Install the type directive using <a href="http://bower.io/">Bower</a>.
       </p>
 
-      <pre><code>$ bower install device-directive-ng --save</code></pre>
+      <pre><code>$ bower install type-directive-ng --save</code></pre>
 
       <p>
-      Now you have <code>&lt;device&gt;</code> directive and all its dependencies ready to be
+      Now you have <code>&lt;lelylan-type&gt;</code> directive and all its dependencies ready to be
       used. Restart the server to automatically add the needed javascript files to your index
       page.
       </p>
@@ -214,95 +231,46 @@
       </p>
 
 
-      <h2>Add the device directive</h2>
+      <h2>Add the type directive</h2>
 
       <p>
       Inject the device directive into your AngularJS application.
       </p>
 
       <pre><code><xmp>// app/scripts/app.js
-angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
-
-      <h2 id="server">OAuth 2.0 Server</h2>
-
-      <p>
-      Lelylan uses an OAuth 2.0 server for authentication and authorization.
-      <a href="http://people.lelylan.com/oauth/applications/new">Register</a> a new application
-      and take the generated credentials (Client ID and Redirect URI) before moving to the
-      next step.
-      </p>
-
-      <img src="public/images/application.png" class="full-image"></img>
+angular.module('app', ['lelylan.directives.type', ... ])</xmp></code></pre>
 
 
-      <h2>Add the oauth-ng directive</h2>
+      <h2>Get Lelylan popular types</h2>
 
       <p>
-      To get an authorization token you need to use
-      <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>,
-      an AngularJS directive for OAuth 2.0 (already installed as dependency).
-      Open your main.html view and configure the oauth directive by setting the
-      <code>client-id</code> and <code>redirect-uri</code> previously defined.
-      </p>
-
-      <pre><code><xmp><oauth
-  site="http://people.lelylan.com"
-  client-id="CLIENT_ID"
-  redirect-uri="REDIRECT_URI"
-  profile-uri="http://api.lelylan.com/me"
-  scope="devices">
-</oauth></xmp></code></pre>
-
-      <p class="notice">
-      Check out the <a href="http://andreareginato.github.io/oauth-ng/" target="blank">oauth-ng</a>
-      docs if you want to better understand how it works.
-      </p>
-
-
-      <h2>Get your devices</h2>
-
-      <p>
-      To get all your devices you can use the
+      To get the popular types used in Lelylan use the
       <a href="http://lelylan.github.io/lelylan-ng/" target="_blank">Lelylan client</a>
       for AngularJS (already installed as dependency). Open the main controller
-      and place the <code>Device#all</code> method.
+      and use the <code>Type#popular</code> method.
       </p>
 
       <pre><code><xmp>angular.module('newProjectApp')
-  .controller('MainCtrl', function ($scope, Device) {
-    Device.all()
-      .success(function(data) { $scope.devices = data })
-      .error(function(data)   { $scope.error   = 'Unauthorized request. Login first.' })
+  .controller('MainCtrl', function ($scope, Type) {
+    Type.popular()
+      .success(function(data) { $scope.types = data })
   });</xmp></code></pre>
 
-      <p>
-      This is what happens. You inject the <code>Device</code> service and call
-      the <code>Device.all()</code> method to get all of your devices and save
-      them in <code>$scope.devices</code>.
-      </p>
 
-
-      <h2>Show your devices</h2>
+      <h2>Show types</h2>
 
       <p>
-      Supposing you have created at least one device with Lelylan
-      you are ready to show them. Open the <code>main.html</code>
-      view and list your devices by using the device directive.
+      Now open the <code>main.html</code> and use the type directive.
       </p>
 
-      <p class="notice">
-      If you have no devices in Leylan, <a href="http://manage.lelylan.com/new">create</a>
-      your first one (it takes few seconds).
-      </p>
-
-      <pre><code><xmp><div ng-repeat="device in devices">
-  <device device-json="device"></device>
+      <pre><code><xmp ng-init="string='{{type.id}}'"><div ng-repeat="type in types">
+  <lelylan-type type-id="{{string}}"></lelylan-type>
 <div></xmp></code></pre>
 
       <p>
-      This is what happens. You iterate between all devices and show them using the device
-      directive. To let the directive know which device it has to render you use the attribute
-      <code>device-json</code> that accepts any valid device representation.
+      Here is what happens. You iterate between all popular types and show them using the type
+      directive. To let the directive know which type it has to render use the attribute
+      <code>type-id</code>, which accepts the type identifier.
       </p>
 
       <p class="notice">
@@ -310,15 +278,14 @@ angular.module('app', ['lelylan.directives.device', ... ])</xmp></code></pre>
         accepted attributes.
       </p>
 
+
       <h2>You're done!</h2>
 
       <p>
-      Open your index page, click to the Login link and authorize your application
-      to get a new access token. You are now ready to monitor and control all your
-      devices.
+      Open your index page and explore Lelylan popular types.
       </p>
 
-      <div class="device"><device device-id="1"></device></div>
+      <div class="type"><lelylan-type type-id="2"></lelylan-type></div>
 
     </div>
     </section>
@@ -1174,16 +1141,17 @@ _.each(scope.devices, function(device) {
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
+    <script src="bower_components/ng-clip/dest/ng-clip.min.js"></script>
 
-    <!-- device directive -->
-    <script src="bower_components/device-directive-ng/dist/device-directive-ng.js"></script>
+    <!-- type directive -->
+    <script src="bower_components/type-directive-ng/dist/type-directive-ng.js"></script>
 
     <!-- mock lib -->
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
 
     <!-- app test -->
     <script src="public/scripts/vendors/app-test.js"></script>
-    <script src="public/scripts/vendors/delayed-responses.js"></script>
 
     <script>
       $('a').each(function() {

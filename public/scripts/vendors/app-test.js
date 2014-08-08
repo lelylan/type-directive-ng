@@ -1,4 +1,4 @@
-var app = angular.module('app', ['lelylan.directives.device', 'ngMockE2E']);
+var app = angular.module('app', ['lelylan.directives.type', 'ngMockE2E']);
 
 // mock all requests we need
 app.run(function($httpBackend, $timeout, Profile) {
@@ -6,45 +6,110 @@ app.run(function($httpBackend, $timeout, Profile) {
 
   jasmine.getFixtures().fixturesPath = 'public/scripts/fixtures';
 
-  device   = angular.copy(JSON.parse(readFixtures('device.json')));
-  type     = JSON.parse(readFixtures('type.json'));
-  privates = JSON.parse(readFixtures('privates.json'));
+  var type       = JSON.parse(readFixtures('type.json'));
+  var typeRead   = JSON.parse(readFixtures('type-read.json'));
+  var property   = JSON.parse(readFixtures('property.json'));
+  var _function  = JSON.parse(readFixtures('function.json'));
+  var status     = JSON.parse(readFixtures('status.json'));
+  var categories = JSON.parse(readFixtures('categories.json'));
 
+
+  // mock requests
   $httpBackend.when('GET', /\/templates\//).passThrough();
 
-  $httpBackend.whenGET('http://api.lelylan.com/devices/1').respond(device);
-  $httpBackend.whenPUT('http://api.lelylan.com/devices/1')
-    .respond(function(method, url, data, headers) { return [200, updateDevice(data), {}]; });
-  $httpBackend.whenPUT('http://api.lelylan.com/devices/1/properties')
-    .respond(function(method, url, data, headers) { return [200,  updateDeviceProperties(data), {}]; });
-  $httpBackend.whenDELETE('http://api.lelylan.com/devices/1').respond(device);
+  /*
+   * Type mocks
+   */
+
   $httpBackend.whenGET('http://api.lelylan.com/types/1').respond(type);
-  $httpBackend.whenGET('http://api.lelylan.com/devices/1/privates').respond(privates);
+  $httpBackend.whenGET('http://api.lelylan.com/types/2').respond(typeRead);
 
-  $httpBackend.whenGET('http://api.lelylan.com/devices/2').respond(device);
-  $httpBackend.whenPUT('http://api.lelylan.com/devices/2')
-    .respond(function(method, url, data, headers) { return [200, updateDevice(data), {}]; });
-  $httpBackend.whenPUT('http://api.lelylan.com/devices/2/properties')
-    .respond(function(method, url, data, headers) { return [200,  updateDeviceProperties(data), {}]; });
-  $httpBackend.whenDELETE('http://api.lelylan.com/devices/2').respond(device);
+  $httpBackend.whenPUT('http://api.lelylan.com/types/1').
+    respond(function(method, url, data, headers) { return [200, updateType(data), {}]; });
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/types\//).respond(type)
 
 
-  var updateDevice = function(data) {
+  var updateType = function(data) {
     data = angular.fromJson(data);
-    device.updated_at   = new Date();
-    device.name         = data.name;
-    device.physical.uri = data.physical.uri;
-    return device;
+    angular.extend(type, data);
+    return type;
+  }
+  /*
+   * Property mocks
+   */
+
+  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/properties/).respond(property);
+  $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/properties\//).
+    respond(function(method, url, data, headers) { return [200, updateProperty(data), {}]; });
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/properties\//).
+    respond(function(method, url, data, headers) { return [200, deleteProperty(data), {}]; });
+
+  var updateProperty = function(data) {
+    data = angular.fromJson(data);
+    var property = _.find(type.properties, function(property) { return property.id == data.id });
+    if (property) { angular.extend(property, data) }
+    return property;
   }
 
-  var updateDeviceProperties = function(data) {
-    data = angular.fromJson(data);
-    device.updated_at = new Date();
-    _.each(data.properties, function(property) {
-      var result = _.find(device.properties, function(_property) { return _property.id == property.id; } );
-      result.expected = result.value = property.expected; });
-    return device;
+  var deleteProperty = function(data) {
+    var property = type.properties.splice(0, 1);
+    return property;
   }
+
+
+  /*
+   * Function mocks
+   */
+
+  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/functions/).respond(_function);
+  $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/functions\//).
+    respond(function(method, url, data, headers) { return [200, updateFunction(data), {}] });
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/functions\//).
+    respond(function(method, url, data, headers) { return [200, deleteFunction(data), {}] });
+
+  var updateFunction = function(data) {
+    data = angular.fromJson(data);
+    var _function = _.find(type.functions, function(_function) { return _function.id == data.id });
+    if (_function) { angular.extend(_function, data) }
+    return data;
+  }
+
+  var deleteFunction = function(data) {
+    var _function = type.functions.splice(0, 1);
+    return _function;
+  }
+
+
+  /*
+   * Status mocks
+   */
+
+  $httpBackend.whenPOST(/http:\/\/api.lelylan.com\/statuses/).respond(status);
+  $httpBackend.whenPUT(/http:\/\/api.lelylan.com\/statuses\//).
+    respond(function(method, url, data, headers) { return [200, updateStatus(data), {}] });
+  $httpBackend.whenDELETE(/http:\/\/api.lelylan.com\/statuses\//).
+    respond(function(method, url, data, headers) { return [200, deleteStatus(data), {}] });
+
+  var updateStatus = function(data) {
+    data = angular.fromJson(data);
+    console.log(data)
+    var _status = _.find(type.statuses, function(status) { return status.id == data.id });
+    if (status) { angular.extend(status, data) }
+    return data;
+  }
+
+  var deleteStatus = function(data) {
+    var _status = type.statuses.splice(0, 1);
+    return _status;
+  }
+
+
+  /*
+   * Categories mocks
+   */
+
+  $httpBackend.whenGET(/http:\/\/api.lelylan.com\/categories/).respond(categories);
+
 });
 
 // hack to make the anchor links work

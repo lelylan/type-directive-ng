@@ -1,9 +1,8 @@
 {
     "id": "1",
     "uri": "http://www.example.com/types/50042612d033a9b4ac0007fa",
-    "name": "Dimmer",
-    "description": "Dimmer description",
-    "categories": ["lights"],
+    "name": "Connected Light",
+    "category": "lights",
     "owner": {
       "id": "1",
       "uri": "http://api.lelylan.com/people/1"
@@ -15,8 +14,8 @@
       "uri": "http://www.example.com/properties/status",
       "name": "Status",
       "type": "text",
-      "default": "0",
-      "accepted": { "on": "On", "off": "Off" },
+      "default": "off",
+      "accepted": [{"key": "on", "value": "On"}, {"key": "off", "value": "Off"}],
       "created_at": "2012-07-16T14:32:50Z",
       "updated_at": "2012-07-16T14:32:50Z"
     },
@@ -27,6 +26,28 @@
       "type": "range",
       "range": { "min": "0", "max": "100", "step": "1" },
       "default": "0",
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    },
+    {
+      "uri": "http://www.example.com/properties/duration",
+      "id": "3",
+      "name": "Interval",
+      "type": "number",
+      "default": "0",
+      "accepted": [],
+      "ranges": {},
+      "created_at": "2012-07-16T14:32:50Z",
+      "updated_at": "2012-07-16T14:32:50Z"
+    },
+    {
+      "uri": "http://www.example.com/properties/color",
+      "id": "4",
+      "name": "Color",
+      "type": "color",
+      "default": "#0cf",
+      "accepted": [],
+      "ranges": {},
       "created_at": "2012-07-16T14:32:50Z",
       "updated_at": "2012-07-16T14:32:50Z"
     }],
@@ -70,6 +91,19 @@
           "uri": "http://www.example.com/properties/intensity",
           "expected": null
         }]
+    },
+    {
+        "uri": "http://www.example.com/functions/50042612d033a9b4ac0007f7",
+        "id": "4",
+        "name": "Set color",
+        "created_at": "2012-07-16T14:32:50Z",
+        "updated_at": "2012-07-16T14:32:50Z",
+        "properties": [
+        {
+          "id": "4",
+          "uri": "http://www.example.com/properties/color",
+          "expected": null
+        }]
     }],
     "statuses": [{
         "uri": "http://www.example.com/statuses/50042612d033a9b4ac0007f8",
@@ -85,7 +119,7 @@
           "id": "1",
           "uri": "http://www.example.com/properties/status",
           "pending": false,
-          "values": ["on"],
+          "values": ["on", "off"],
           "ranges": []
         }]
       }, {

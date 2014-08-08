@@ -148,8 +148,9 @@ section:nth-child(2n) {
 }
 
 #logo {
-  font: 100px 'Italiana', sans-serif;
+  font: 75px 'Italiana', sans-serif;
   text-transform: lowercase;
+  margin-bottom: 20px;
 }
 
 #tagline {
@@ -331,10 +332,10 @@ table.button .parameter {
   margin-top: 2em;
 }
 
-div.device {
+div.type {
   width: 23em;
   padding: 0.5em;
-  margin-top:50px;
+  margin-top:40px;
   margin-bottom:50px;
   background-color: #f6f6f6;
   border: 1px solid #eee;
