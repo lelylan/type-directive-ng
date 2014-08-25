@@ -26,7 +26,7 @@
     "fontawesome": "~4.1.0",
     "ng-clip": "~0.2.2",
     "zeroclipboard": "~2.1.6",
-    "type-directive-ng": "~0.2.0",
+    "type-directive-ng": "~0.2.1",
     "angular-route": "~1.2.21"
   },
   "devDependencies": {
@@ -39,6 +39,6 @@
     "jasmine-jquery": "~2.0.3"
   },
   "resolutions": {
-    "angular": "~1.2.16"
+    "angular": "1.2.23"
   }
 }
