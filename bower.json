@@ -26,7 +26,7 @@
     "fontawesome": "~4.1.0",
     "ng-clip": "~0.2.2",
     "zeroclipboard": "~2.1.6",
-    "type-directive-ng": "~0.2.1",
+    "type-directive-ng": "~0.2.2",
     "angular-route": "~1.2.21"
   },
   "devDependencies": {
