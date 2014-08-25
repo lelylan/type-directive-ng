@@ -1,4 +1,4 @@
-/* type-directive-ng - v0.2.1 - 2014-08-25 */
+/* type-directive-ng - v0.2.2 - 2014-08-25 */
 
 'use strict';
 

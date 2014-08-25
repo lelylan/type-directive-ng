@@ -1,6 +1,6 @@
 {
   "name": "type-directive-ng",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": [
     "dist/type-directive-ng.js",
     "dist/type-directive-ng.css"
