@@ -1,10 +1,23 @@
 /*
+ * Fonts
+ */
+
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato/Lato-Light.eot'), /* IE9 Compat Modes */
+       url('fonts/Lato/Lato-Light.svg') format('svg'),
+       url('fonts/Lato/Lato-Light.woff') format('woff'), /* Modern Browsers */
+       url('fonts/Lato/Lato-Light.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+
+/*
  * Component reset
  */
 
 .ly-type * {
   font-size: 1em;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", sans-serif;
   background: none repeat scroll 0 0 transparent;
   border: medium none;
   border-spacing: 0;
@@ -30,7 +43,7 @@
  */
 
 .ly-type {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", sans-serif;
   background-color: #fff;
   color: #333;
   border: 1px solid #eee;
@@ -79,7 +92,7 @@ input:focus {
 }
 
 .ly-type .ly-form .ly-button {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", sans-serif;
   width: 100%;
   padding: 0;
   padding-top: 0.7em;
@@ -267,11 +280,11 @@ input:focus {
   font-size: 2em;
   position: absolute;
   top: 0.35em;
-  right: -.1em;
+  right: 0;
 }
 
 .ly-type .ly-header .ly-menu a {
-  padding: 0 .5em;
+  padding: 0 .4em;
 }
 
 .ly-type .ly-header .save-name {
@@ -491,25 +504,25 @@ input:focus {
   width: 90%;
 }
 
-.ly-form .ly-field .ly-description i {
+.ly-type .ly-form .ly-field .ly-description i {
   margin-left: .2em;
   font-size: 1.25em;
 }
 
-.ly-form .ly-owner .ly-editable .ly-value {
+.ly-type .ly-form .ly-owner .ly-editable .ly-value {
   padding-bottom: 0.1em;
   border-bottom: 1px dashed #ddd;
 }
 
-.ly-form .ly-field select {
+.ly-type .ly-form .ly-field select {
   background: transparent;
   -webkit-appearance: none;
 }
 
-.ly-form .ly-field ::-webkit-input-placeholder { color:#ddd; font-weight: 100; }
-.ly-form .ly-field ::-moz-placeholder { color:#ddd; } /* firefox 19+ */
-.ly-form .ly-field :-ms-input-placeholder { color:#ddd; } /* ie */
-.ly-form .ly-field input:-moz-placeholder { color:#ddd; }
+.ly-type .ly-form .ly-field ::-webkit-input-placeholder { color:#ddd; font-weight: 100; }
+.ly-type .ly-form .ly-field ::-moz-placeholder { color:#ddd; } /* firefox 19+ */
+.ly-type .ly-form .ly-field :-ms-input-placeholder { color:#ddd; } /* ie */
+.ly-type .ly-form .ly-field input:-moz-placeholder { color:#ddd; }
 
 .ly-type .ly-form .ly-detail {
   border-top: 1px solid #f8f8f8;
@@ -556,8 +569,8 @@ input:focus {
  * Form save and delete buttons
  */
 
-.ly-form .ly-delete i,
-.ly-form .ly-save i {
+.ly-type .ly-form .ly-delete i,
+.ly-type .ly-form .ly-save i {
   font-size: 1.2em;
 }
 
@@ -605,41 +618,41 @@ input:focus {
  */
 
 
-.ly-form .ly-field .ly-description span,
-.ly-form .ly-field .ly-multiple .ly-value {
+.ly-type .ly-form .ly-field .ly-description span,
+.ly-type .ly-form .ly-field .ly-multiple .ly-value {
   width: 42%;
   margin-right: .5em;
 }
 
-.ly-form .ly-field .ly-description span {
+.ly-type .ly-form .ly-field .ly-description span {
   display: inline-block;
   text-transform: capitalize;
   margin-right: .6em;
   font-size: 1.1em;
 }
 
-.ly-form .ly-field .ly-multiple i {
+.ly-type .ly-form .ly-field .ly-multiple i {
   font-size: 1.2em;
 }
 
-.ly-form .ly-field .ly-multiple .ly-remove-multiple {
+.ly-type .ly-form .ly-field .ly-multiple .ly-remove-multiple {
   color: #eee;
 }
 
-.ly-form .ly-field .ly-multiple .ly-remove-multiple:hover {
+.ly-type .ly-form .ly-field .ly-multiple .ly-remove-multiple:hover {
   color: red;
 }
 
-.ly-form .ly-field .ly-multiple-field {
+.ly-type .ly-form .ly-field .ly-multiple-field {
   margin-top: 0.2em;
   margin-bottom: 0.3em;
 }
 
-.ly-form .ly-field .ly-multiple-add {
+.ly-type .ly-form .ly-field .ly-multiple-add {
   padding-top: .3em;
 }
 
-.ly-form .ly-field .ly-multiple-add i {
+.ly-type .ly-form .ly-field .ly-multiple-add i {
   font-size: .9em;
 }
 
