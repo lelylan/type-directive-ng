@@ -1,4 +1,4 @@
-/* type-directive-ng - v0.2.2 - 2014-08-25 */
+/* type-directive-ng - v0.2.3 - 2014-08-26 */
 
 /*
  * Fonts
@@ -363,7 +363,7 @@ input:focus {
 }
 
 .ly-type .ly-no-connections p {
-  font-size: 1.1em;
+  font-size: 1em;
   padding-bottom: .5em;
 }
 
