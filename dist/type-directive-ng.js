@@ -1,4 +1,4 @@
-/* type-directive-ng - v0.2.4 - 2014-08-30 */
+/* type-directive-ng - v0.2.5 - 2014-08-30 */
 
 'use strict';
 
@@ -107,7 +107,7 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
             scope.message   = { title: 'Something went wrong', description: 'Most probably the type you are trying to load does not exist' }
           });
 
-        Category.all({}. { cache: true }).
+        Category.all({}, { cache: true }).
           success(function(response) {
             scope.categories = response;
           });
