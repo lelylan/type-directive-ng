@@ -1,4 +1,4 @@
-/* type-directive-ng - v0.2.3 - 2014-08-26 */
+/* type-directive-ng - v0.2.4 - 2014-08-30 */
 
 'use strict';
 
@@ -97,7 +97,7 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
     /* watches the device ID and gets the device representation and calls the type API */
     scope.$watch('typeId', function(value) {
       if (value) {
-        Type.find(value).
+        Type.find(value, { cache: true }).
           success(function(response) {
             scope.view.path = '/default';
             scope.type = response;
@@ -107,7 +107,7 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
             scope.message   = { title: 'Something went wrong', description: 'Most probably the type you are trying to load does not exist' }
           });
 
-        Category.all().
+        Category.all({}. { cache: true }).
           success(function(response) {
             scope.categories = response;
           });
