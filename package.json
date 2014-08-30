@@ -1,6 +1,6 @@
 {
   "name": "type-directive-ng",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": "Andrea Reginato <dev@lelylan.com>",
   "description": "AngularJS directive for Lelylan types",
   "repository": {

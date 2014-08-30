@@ -91,7 +91,7 @@ angular.module('lelylan.directives.type.directive').directive('lelylanType',
             scope.message   = { title: 'Something went wrong', description: 'Most probably the type you are trying to load does not exist' }
           });
 
-        Category.all({}. { cache: true }).
+        Category.all({}, { cache: true }).
           success(function(response) {
             scope.categories = response;
           });
