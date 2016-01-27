@@ -5,7 +5,9 @@ AngularJS web component to shorten the needed time to create a device type struc
 
 # Documentation
 
+<a href="http://lelylan.github.io/type-directive-ng/">
 <img src="http://i.imgur.com/DYJjEUj.png" width="500">
+</a>
 
 ## Contributing
 
