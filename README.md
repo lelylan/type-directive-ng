@@ -45,7 +45,7 @@ The new distribution files will be created in the `dist/` folder.
 
 ### Coding guidelines
 
-Follow [github](https://github.com/styleguide/) guidelines.
+Follow [AngularJS](https://github.com/johnpapa/angular-styleguide) guidelines.
 
 
 ## Feedback
