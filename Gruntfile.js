@@ -6,6 +6,7 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
+require('dotenv').config()
 
 module.exports = function (grunt) {
 
@@ -31,6 +32,18 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+
+    //Environment variables
+    env: {
+      dev: {
+        LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: 'lelylan.github.io/types-dashboard-ng',
+        LELYLAN_DEV_CENTER_PUBLIC_URL: 'dev.lelylan.com'
+      },
+      prod: {
+        LELYLAN_DEV_CENTER_PUBLIC_URL: process.env.LELYLAN_DEV_CENTER_PUBLIC_URL || 'dev.lelylan.com',
+        LELYLAN_TYPE_DASHBOARD_PUBLIC_URL: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL || 'lelylan.github.io/types-dashboard-ng',
+      }
+    },
 
     // Project settings
     yeoman: yeomanConfig,
@@ -312,6 +325,28 @@ module.exports = function (grunt) {
             replacement: 'bower_components/<%= yeoman.name %>/dist/views/templates/default.html'
           }]
         }
+      },
+      'types-dashboard': {
+        files: {
+          './': 'dist/views/templates/default.html'
+        },
+        options: {
+        replacements: [{
+            pattern: 'lelylan.github.io/types-dashboard-ng',
+            replacement: process.env.LELYLAN_TYPE_DASHBOARD_PUBLIC_URL
+          }]
+        }
+      },
+      'dev-center': {
+        files: {
+          './': 'dist/views/templates/default.html'
+        },
+        options: {
+        replacements: [{
+            pattern: 'dev.lelylan.com',
+            replacement: process.env.LELYLAN_DEV_CENTER_PUBLIC_URL
+          }]
+        }
       }
     },
 
@@ -338,6 +373,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'env:dev',
       'clean:server',
       'bower-install',
       'concurrent:server',
@@ -353,6 +389,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
+    'env:dev',
     'clean:server',
     'concurrent:test',
     'autoprefixer',
@@ -361,6 +398,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'env:prod',
     'clean:dist',
     'copy',
     'useminPrepare',
@@ -369,6 +407,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
+    'env:dev',
     'newer:jshint',
     'test',
     'build'
