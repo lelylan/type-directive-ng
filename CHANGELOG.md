@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.5 (February 7, 2017)
+
+* Added environmet variables for lelylan microservices urls
+
+
 ## 0.2.4 (August 30, 2014)
 
 * New embedded code using iFrame (the previous flow was a bit complex)
